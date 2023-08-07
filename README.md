@@ -17,5 +17,11 @@ This design compared to the accurate reults done by flowjo is different. Out tea
 ## Design 2
 Uses input the excel (xlsx) files that has already been through flowjo analysing machine into design 2 generator, the files will be parse, merged and extracted into 1 csv file
 
+## Front-end Design 
+
+### Wireframe
+Front-end design will be implemented via Figma and Flask API. For more information about the design, visit:
+https://www.figma.com/file/OhQX2cjNGy8PwhyqNZ2eyq/WEHI-FCS-Merge-Webapp?type=design&node-id=0%3A1&mode=design&t=bbFsfX9T0aTQR7jL-1
+
 
 

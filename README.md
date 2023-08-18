@@ -21,11 +21,12 @@ Uses input the excel (xlsx) files that has already been through flowjo analysing
 
 ### Wireframe
 Front-end design will be implemented via Figma and Flask API. For more information about the design, visit:
-https://www.figma.com/file/OhQX2cjNGy8PwhyqNZ2eyq/WEHI-FCS-Merge-Webapp?type=design&node-id=0%3A1&mode=design&t=bbFsfX9T0aTQR7jL-1
+Update Soon...
 
 ### WorkFlow Diagram
 Illustration of the process of input (front end) and output (backend) and sequence diagram (abstraction behind our machine). For more information, visit below:
-![Workflow Diagram + Wireframe-Workflow drawio](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/115709584/5e4f74df-5a0a-47b6-8d45-a0945d8789c2)
+![Workflow Diagram_](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/115709584/d868be05-2b04-4242-88a7-6721ec69ab03)
+
 
 
 

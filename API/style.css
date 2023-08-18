@@ -6,8 +6,8 @@ body, h1, p {
 
 /* Style for the header and navigation menu */
 header {
-    background-color: #333;
-    color: white;
+    background-color: #b79b9b;
+    color: rgb(197, 95, 95);
     padding: 10px;
     text-align: center;
 }
@@ -29,7 +29,7 @@ nav ul li:last-child {
 
 nav ul li a {
     text-decoration: none;
-    color: white;
+    color: rgb(176, 115, 115);
 }
 
 /* Style for the main content */

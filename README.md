@@ -25,7 +25,7 @@ Uses input the excel (xlsx) files that has already been through flowjo analysing
 
 ### Wireframe
 Front-end design will be implemented via Figma and Flask API. For more information about the design, visit:
-![Wireframe](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/115709584/79b03106-7ba1-4e03-8207-1d5526606a48)
+[Wireframe](https://wehieduau.sharepoint.com/:u:/s/StudentInternGroupatWEHI/EYEnvVJa6P9Ml496VLLnjqsBnW40t5Vth79XrcLGCcMOWQ?e=YgRWXA)
 
 
 

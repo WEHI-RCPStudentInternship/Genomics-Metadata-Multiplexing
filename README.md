@@ -25,7 +25,8 @@ Update Soon...
 
 ### WorkFlow Diagram
 Illustration of the process of input (front end) and output (backend) and sequence diagram (abstraction behind our machine). For more information, visit below:
-![Workflow Diagram_](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/115709584/d868be05-2b04-4242-88a7-6721ec69ab03)
+![Workflow Diagram](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/115709584/614a2da2-71f0-4baa-8c81-1bd82d51c8bf)
+
 
 
 

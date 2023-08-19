@@ -6,6 +6,10 @@ Raw fcs. data files loaded as an input -> fcs files will be parsed and merged in
 
 Aims to use python genrator (to parse) that works similar like flowjo 
 
+### WorkFlow Diagram
+Illustration of the process of input (front end) and output (backend) and sequence diagram (abstraction behind our machine). For more information, visit below:
+![Workflow Diagram](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/115709584/614a2da2-71f0-4baa-8c81-1bd82d51c8bf)
+
 ## Back-end Design 
 
 ### Design 1
@@ -21,11 +25,10 @@ Uses input the excel (xlsx) files that has already been through flowjo analysing
 
 ### Wireframe
 Front-end design will be implemented via Figma and Flask API. For more information about the design, visit:
-Update Soon...
+![Wireframe](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/115709584/79b03106-7ba1-4e03-8207-1d5526606a48)
 
-### WorkFlow Diagram
-Illustration of the process of input (front end) and output (backend) and sequence diagram (abstraction behind our machine). For more information, visit below:
-![Workflow Diagram](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/115709584/614a2da2-71f0-4baa-8c81-1bd82d51c8bf)
+
+
 
 
 

@@ -4,6 +4,15 @@ import fcsparser
 from shiny import App, render, ui
 from pathlib import Path
 
+"""
+
+Uploading a single fcs file
+Parse by fcs_parser
+Show results
+Download to csv file
+
+"""
+
 app_ui = ui.page_fluid(
     ui.input_file("fcs", "Choose an FCS file to upload:", accept=".fcs"),
     ui.download_button("download_csv", "Download CSV file"),
@@ -34,6 +43,7 @@ def server(input, output, session):
         fcs_file_path = Path(fcs_file[0]["datapath"])
         _, raw_data = fcsparser.parse(fcs_file_path, reformat_meta=True)
         df = pd.DataFrame(raw_data)
+        
         # Save the DataFrame to a CSV file in memory and yield the content
         csv_content = df.to_csv(index=False)
         yield csv_content

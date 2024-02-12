@@ -7,7 +7,7 @@ library(reticulate)
 #fcsparser <- import("fcsparser")
 #fk <- import("flowkit")
 
-source_python("func.py")
+source_python("python_functions.py")
 
 # Define UI for app that draws a histogram ----
 ui <- fluidPage(

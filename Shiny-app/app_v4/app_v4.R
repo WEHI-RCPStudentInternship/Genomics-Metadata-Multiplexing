@@ -9,9 +9,6 @@ library(reticulate)
 
 source_python("func.py")
 
-scale_value("11Dec18_INX_Beads_plate136 finish.fcs")
-channel_value("11Dec18_INX_Beads_plate136 finish.fcs")
-
 # Define UI for app that draws a histogram ----
 ui <- fluidPage(
   

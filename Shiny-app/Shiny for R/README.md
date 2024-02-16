@@ -41,6 +41,6 @@ Tools -> Global Options -> Python -> (Select your Python Interpreter) -> Apply a
 
 Run ```py_config()``` to make sure ```numpy``` was found by your Python Interpreter. 
 
-## Make sure you have downloaded both `app_v4.R` and `func.py` files and put them in the same direction. 
+## Make sure you have downloaded both `app_R_final.R` and `func.py` files and put them in the same direction. 
 
 

@@ -11,6 +11,8 @@ This markdown file contains the following content:
     - [Exception: Python/Flask Directories](#exception-pythonflask-directories)
 4. [Acknowledgements](#acknowledgements)
 
+> This codebase was developed by interns and open source contributors and serves as the **SECONDARY** repository for the GMM project. For the **PRIMARY** codebase, visit the [sister repository](https://github.com/WEHIGenomicsRnD/celseq-sample-sheet-generator) and it's corresponding [wiki page](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Sister-Repository).
+
 ## Repository Structure
 - [```markdown-assets```](./markdown-assets/): Stores the images used to make the markdown files within this repository, or the wiki pages that document the technicalities of the GMM project
 - [```fcslog```](./fcslog/): is name of the 2023 Semester 2 intake's implementation of the [web application](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Problem-Space#web-application) specified in the [Problem Space](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Problem-Space) wiki page

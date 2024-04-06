@@ -8,7 +8,6 @@ This markdown file contains the following content:
 1. [Repository Structure](#repository-structure)
 2. [Purpose Of Repository Markdown Files And Wiki Pages](#purpose-of-repository-markdown-files-and-wiki-pages)
 3. [Naming Conventions For Files And Directories](#naming-conventions-for-files-and-directories)
-    - [Exception: Python/Flask Directories](#exception-pythonflask-directories)
 4. [Acknowledgements](#acknowledgements)
 
 > This codebase was developed by interns and open source contributors and serves as the **SECONDARY** repository for the GMM project. For the **PRIMARY** codebase, visit the [sister repository](https://github.com/WEHIGenomicsRnD/celseq-sample-sheet-generator) and it's corresponding [wiki page](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Sister-Repository).
@@ -28,9 +27,8 @@ NOTE: As **fcslog** and **Shiny-app** are 2 separate implementations of would-be
 ## Naming Conventions For Files And Directories
 - Use names that are meaningful and self-explanatory
 - When creating new files or directories, lowercase alphanumeric characters should be used
-- Special characters should be AVOIDED whenever possible
-- Whitespace characters, should NEVER be used
-- The only exception is the use of hyphens, ```-```, that separate alphabetic characters
+- Special and Whitespace characters, should NEVER be used
+- Use [snake_case](https://developer.mozilla.org/en-US/docs/Glossary/Snake_case) for filenames and directories as this codebase uses Python to import files/modules
 - The filetype extension for a file should ALWAYS be included at the end
 <table>
     <tr>
@@ -40,20 +38,15 @@ NOTE: As **fcslog** and **Shiny-app** are 2 separate implementations of would-be
     </tr>
     <tr>
         <th>Directory:</th>
-        <td>web-application</td>
-        <td>W3b App!cation</td>
+        <td>shiny_app</td>
+        <td>Sh1ny-App</td>
     </tr>
     <tr>
         <th>File:</th>
-        <td>gmm-image.png</td>
-        <td>GmM Im4g3</td> 
+        <td>cel_seq2_steps.png</td>
+        <td>Cel Seq2 Steps</td> 
     </tr>
 </table>
-
-### Exception: Python/Flask Directories
-> use of hyphens, ```-```, that separate alphabetic characters
-- Since Python does not recognise hyphens especially for importing, underscores, ```_```, should be used instead
-- This should be used up to the root sub-dirctory of the codebase
 
 ## Acknowledgements
 We would like to acknowledge all the current and past supervisors, subject matter experts, interns and open source contributors that took part in the WEHI GMM project. A list of their names, GitHub usernames, and emails can be found in the [Contributors](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Contributors) wiki page.

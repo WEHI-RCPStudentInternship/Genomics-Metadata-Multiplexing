@@ -20,4 +20,3 @@ This markdown file contains the following contents:
 - Unsure of the purpose of style.css
 - ```home.html``` and ```generator.html``` uses inline CSS
 - ```home.html```  has hyperlinks to uncreated sections being ```about.html```, ```tutorial.html```, and ```contact.html```
-- ```generator.html``` uses absolute filepaths instead of relative filepaths when inmporting ```generator_style.css```

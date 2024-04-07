@@ -10,7 +10,7 @@ source('R/ui_components/func4_fcs_to_csv.R')
 addResourcePath("assets", "R/www/assets")
 
 navbar_title <- div(
-    img(src="assets/wehi.png", height = "30px"), 
+    img(src="assets/wehi.png", height = "30px"), " ",
     "Genomics Metadata Multiplexing Project"
 )
 
@@ -26,6 +26,6 @@ ui <- fluidPage(
         func1_plate_to_spreadsheet,
         func2_collate_fcs_data,
         func3_merge_fcs_data,
-        func4_fcs_to_csv,
+        # func4_fcs_to_csv,
     )
 )

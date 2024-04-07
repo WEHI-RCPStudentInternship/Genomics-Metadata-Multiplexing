@@ -1,3 +1,9 @@
+/**
+ * @file        home.css
+ * @description Styles for home.html page
+ * @note        Previously called style.css
+ */
+
 /* Reset some default styles */
 body, h1, p {
     margin: 0;
@@ -6,9 +12,9 @@ body, h1, p {
 
 /* Style for the header and navigation menu */
 header {
-    background-color: #b79b9b;
-    color: rgb(197, 95, 95);
-    padding: 10px;
+    background-color: #123c88; /* head bar */
+    color: rgb(225, 225, 225);
+    padding: 30px;
     text-align: center;
 }
 
@@ -20,7 +26,7 @@ nav ul {
 }
 
 nav ul li {
-    margin-right: 20px;
+    margin-right: 100px;
 }
 
 nav ul li:last-child {
@@ -29,11 +35,11 @@ nav ul li:last-child {
 
 nav ul li a {
     text-decoration: none;
-    color: rgb(176, 115, 115);
+    color: rgb(255, 255, 255);
 }
 
 /* Style for the main content */
 main {
-    padding: 20px;
+    padding: 40px;
     text-align: center;
 }

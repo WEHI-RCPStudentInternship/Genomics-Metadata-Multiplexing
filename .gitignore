@@ -147,3 +147,5 @@ prototypes/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+gmm/.Rhistory
+gmm/.RData

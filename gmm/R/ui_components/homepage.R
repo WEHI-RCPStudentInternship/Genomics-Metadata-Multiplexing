@@ -1,44 +1,38 @@
-library(shiny)
-
-# Updated Homepage TabPanel Content with Custom CSS
-homepage <- tabPanel(
+homepage <- function() {
+  tabPanel(
     'Home',
     tags$head(
-        tags$style(HTML("
-      h1 { font-size: 24px; font-family: 'Georgia', serif; }
-      h2 { font-size: 20px; font-family: 'Georgia', serif; }
-      h3 { font-size: 16px; font-family, 'Georgia', serif; }
-      p { font-size: 11px; font-family: 'Georgia', serif; }
-      .homepage-content { padding: 1rem; }
-    "))
+      tags$style(HTML("
+        * {font-family: 'Roboto'; }
+        h1, h2, h3 { font-family: 'Georgia', serif; }
+        h2 { font-size: 20px; }
+        h3 { font-size: 16px; }
+        p { font-size: 11px; }
+        .homepage-content { padding-bottom: 1rem;}
+        ul { padding-left: 0; }
+        li { margin-left: 14px; }
+      "))
     ),
     div(
-        class = 'homepage-content',
-        tags$h2('Welcome to the WEHI Genomics Metadata Multiplexing Project'),
-        tags$p('The Genomics Metadata Multiplexing (GMM) project represents a collaborative effort to automate critical aspects of the CEL-Seq2 workflow in genomics research. Initially developed as a Flask application by Marek Cmero, this project has now transitioned to a Shiny/R web application to leverage the computational resources of the WEHI Milton server.'),
-        
-        tags$h3('Main Purpose'),
-        tags$p('This web application is designed to streamline the integration of FCS file data with experiment-specific Index Primer spreadsheets. By automating the merge process, the GMM project aims to enhance the accuracy and efficiency of genomic experiments conducted at WEHI.'),
-        
-        tags$h3('Key Functionalities'),
-        tags$ul(
-            tags$li('Plate Layout to Spreadsheet: Converts colour-coded plate designs into row-wise spreadsheets, detailing sample IDs for each well.'),
-            tags$li('Collate FCS Data: Merges data from multiple FCS files into a single comprehensive CSV file.'),
-            tags$li('Merge FCS Data: Integrates FACS data into a row-wise sample spreadsheet, correlating plate, sample ID, and well position.')
-        ),
-        
-        tags$h3('Navigating the Application'),
-        tags$p('Access to the application’s functionalities is through distinct pages within this web app. Users can navigate to:'),
-        tags$ul(
-            tags$li(tags$a(href = '#', 'Plate Layout to Spreadsheet'), ': Generate sample spreadsheets from plate designs.'),
-            tags$li(tags$a(href = '#', 'Collate FCS Data'), ': Aggregate FCS file data.'),
-            tags$li(tags$a(href = '#', 'Merge FCS Data'), ': Merge FCS and Index Primer data into experiment spreadsheets.')
-        ),
-        
-        tags$h3('Deployment and Future Directions'),
-        tags$p('With the shift to Shiny/R and deployment on the WEHI Milton server, the GMM project is poised for further development and refinement. This transition not only facilitates access to powerful computational resources but also aligns with our goal of internalizing the application to minimize external costs and enhance data security.'),
-        
-        tags$h3('Acknowledgements'),
-        tags$p('We extend our deepest gratitude to all the interns, open source contributors, and supervisory staff who have contributed to the GMM project. Special thanks to Marek Cmero for his foundational work on the initial Flask application.')
+      class = 'homepage-content',
+      shinyjs::useShinyjs(), # Initialize shinyjs
+      tags$h2('Welcome to the WEHI Genomics Metadata Multiplexing Project'),
+      tags$p('The Genomics Metadata Multiplexing (GMM) project is an ambitious initiative aimed at enhancing genomic research efficiency through automation and data integration. This project specifically focuses on the CEL-Seq2 workflow, a crucial process in genomic experiments that involves the meticulous preparation and analysis of cellular samples.'),
+      tags$p('Originally developed as a Flask application by Marek Cmero, a Senior Research Officer at WEHI, the project has transitioned to Shiny/R to leverage the advanced computational resources and interactive capabilities offered by the R ecosystem. This migration ensures a seamless user experience and integrates perfectly with the existing workflows at WEHI.'),
+      tags$h3('Main Purpose'),
+      tags$p('The core objective of this web application is to automate the integration of FCS file data with Index Primer spreadsheets. This automation is critical for streamlining the data preparation process, reducing manual errors, and significantly enhancing the accuracy and efficiency of genomic experiments.'),
+      tags$h3('Key Functionalities'),
+      tags$ul(
+        tags$li(actionLink("link_plateLayout", "Plate Layout to Spreadsheet"), ": A tool to convert color-coded plate designs into a row-wise spreadsheet, outlining sample IDs for each well."),
+        tags$li(actionLink("link_collateFCS", "Collate FCS Data"), ": A feature that aggregates data from multiple FCS files into a single, comprehensive CSV file."),
+        tags$li(actionLink("link_mergeFCS", "Merge FCS Data"), ": An application to integrate FACS data into a row-wise sample (experiment) spreadsheet, correlating plate, sample ID, and well position.")
+      ),
+      tags$h3('Navigating the Application'),
+      tags$p('This web application is structured into distinct pages, each dedicated to one of the functionalities mentioned above. Users can navigate between these pages using the links provided on the homepage or the navigation bar at the top of the application.'),
+      tags$h3('Deployment and Future Directions'),
+      tags$p('With its transition to Shiny/R and deployment on the WEHI Milton server, the GMM project is set for further development and enhancements. This strategic move not only aligns with the project’s goals of improving genomic research methodologies but also significantly reduces external computational costs.'),
+      tags$h3('Acknowledgements'),
+      tags$p('The GMM project owes its success to the collective efforts of interns, open source contributors, and supervisory staff at WEHI. We extend our heartfelt gratitude to everyone involved, with special thanks to Marek Cmero for his pioneering work and dedication to the project.')
     )
-)
+  )
+}

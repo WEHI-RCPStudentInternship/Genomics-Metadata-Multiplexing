@@ -13,4 +13,4 @@ This markdown file contains the following contents:
 - [```design_2```](./design_2/): The **CURRENT** implementation that uses FlowJo for FCS file processing
 
 ## Differences Between 3rd Party FCS Software
-For more information between the differences between FlowJo and FCSParser, visit the [Differences between FlowJo & FCSparser](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/FCSLOG#differences-between-flowjo--fcsparser) section within the Problem Space wiki page.
+For more information between the differences between FlowJo and FCSParser, visit the [Differences between FlowJo & FCSparser](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/FCSLOG#differences-between-flowjo--fcsparser) section within the FCSLOG wiki page.

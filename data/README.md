@@ -7,13 +7,12 @@ This markdown file contains the following contents:
 2. [Things To Fix](#things-to-fix)
 
 ## Directrory Structure
-- [```fcs_data```](): 
-- [```final_resources```](): 
-- [```demultiplexing```](): 
-- [```primer_index_template```](): 
+- [```fcs_data```](./fcs_data/): contains a collection of ```.fcs``` files
+- [```final_resources```](./final_resources/): 
+- [```demultiplexing```](./demultiplexing/): 
+- [```primer_index_template```](./primer_index_template/): 
 
 ## Things To Fix
-- ```fcas_data``` needs the following adjustments:
-- ```final_resources``` needs the following adjustments:
-- ```demultiplexing``` needs the following adjustments:
-- ```primer_index_template``` needs the following adjustments:
+- ```final_resources``` do not know the purpose of this directory
+- ```demultiplexing``` do not know the purpose of this directory
+- ```primer_index_template``` do not know the purpose of this directory

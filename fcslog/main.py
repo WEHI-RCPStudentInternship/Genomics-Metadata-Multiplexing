@@ -1,11 +1,11 @@
 import os
 import shutil
 import pandas as pd
-import openpyxl
 
-
-def organising_files(directory):
-
+def organising_files(directory, primer_index_path, fcs_data_path):
+    """
+    
+    """
     # Automatically create Primer Index Folder
     os.makedirs(primer_index_path, exist_ok=True)
 
@@ -27,77 +27,92 @@ def organising_files(directory):
 
     print("Files organized successfully.")
 
+def merge_by_plate(fcs_data_path, primer_index_path, column_merge_output_path, row_merge_output_path):
+    """
 
-# Root Directory
-main_directory = "/Users/andylenguyen/Documents/Genomics-Metadata-Multiplexing/Merge Mechanism"
-# Primer Index Directory
-primer_index_folder = "Primer Index Folder"
-primer_index_path = os.path.join(main_directory, primer_index_folder)
-# FCS Data Directory
-fcs_data_folder = "FCS Data Folder"
-fcs_data_path = os.path.join(main_directory, fcs_data_folder)
-# Organising Files to Folder
-organising_files(main_directory)
+    """
 
-# TEST
-print(primer_index_path)
-print(fcs_data_path)
-
-# Create another folder to store merged file (Primer Index + FCS)
-merged_files_path = os.path.join(main_directory, "Output Folder")
-os.makedirs(merged_files_path, exist_ok=True)
-
-
-def merge_by_plate():
-    # Step 1: Merge files from folder 1 and folder 2 with matching names
+    # STEP 1: Merge files from the Index Primer folder and FCS folder with matching code/prefix names
     for filename1 in os.listdir(primer_index_path):
+        
+        # CASE 2: Found an Primer Index file
         if filename1.endswith(".xlsx"):
+            
+            # STEP 3: Get the Filepath of the Primer Index file
             file_path1 = os.path.join(primer_index_path, filename1)
-            # Extract the part before the space
-            file_name_prefix = filename1.split(" ", 1)[0]
 
-            # CHECK
-            print("Prefix: ", file_name_prefix)
+            # STEP 4: Extract the Primer Index file prefix (e.g. LC372)
+            file_name_prefix = filename1.split("_", 1)[0]
+            #print("Prefix: ", file_name_prefix)
 
-            # Find matching folder e.g LC011 Primer Index to LC011 FCS -- so no need to ordered
+            # STEP 5: Find the FCS file with the matching prefix
             matching_filename2 = next((f for f in os.listdir(fcs_data_path) if f.startswith(
                 file_name_prefix) and f.endswith(".xlsx")), None)
 
+            # STEP 6: Continue with COLUMN merge if matching FCS file is found
             if matching_filename2:
+
+                # STEP 7: Get the file path of the matching FCS file
                 file_path2 = os.path.join(fcs_data_path, matching_filename2)
+                #print(f"Start mereging {file_path1} and {file_path2}")
 
-                # CHECK
-                print(f"Start mereging {file_path1} and {file_path2}")
-
+                # STEP 8: Read the Primer Index and FCS files as excel spreadsheets
                 df1 = pd.read_excel(file_path1)
                 df2 = pd.read_excel(file_path2)
 
+                # STEP 9: Perform the COLUMN merge between the matching Index Primer and FCS files
                 merged_df = pd.concat([df1, df2], axis=1)
 
-                # Automaticallu save merged sheet in the separate folder called Complete_Primer&Index
-                merged_sheet_name = f"merged_plate_{file_name_prefix}.xlsx"
-                merged_sheet_path = os.path.join(
-                    merged_files_path, merged_sheet_name)
+                # STEP 10: Save the COLUMN merged outputs within an output folder
+                merged_sheet_name = f"column_merged_plate_{file_name_prefix}.xlsx"
+                merged_sheet_path = os.path.join(column_merge_output_path, merged_sheet_name)
                 merged_df.to_excel(merged_sheet_path, index=False)
 
-    # Step 2: Merge all merged files by rows into one excel sheet
-    final_df = []
-    for filename in os.listdir(merged_files_path):
-        if filename.endswith("xlsx"):
-            filepath = os.path.join(merged_files_path, filename)
+    # STEP 11: Perform ROW merge (i.e. Merge all COLUMN outputs together)
+    row_df = []
+    for column_file in os.listdir(column_merge_output_path):
+        
+        # STEP 12: Ensure the column file is an excel spreadsheet
+        if column_file.endswith("xlsx"):
+            
+            # STEP 13: Get the file path of the column file
+            column_file_path = os.path.join(column_merge_output_path, column_file)
+            #print(f"File {column_file_path}")
 
-            print(f"File {filepath}")
-            # Read and Merge
-            df = pd.read_excel(filepath)
-            final_df.append(df)
+            # STEP 14: Read and merge (by ROW) the column files
+            df = pd.read_excel(column_file_path)
+            row_df.append(df)
 
-    final_merge = pd.concat(final_df, ignore_index=True)
-    final_output_path = os.path.join(
-        main_directory, "final_merged_output.xlsx")
+    # STEP 15: Concatonate the row dataframes together
+    row_merge = pd.concat(row_df, ignore_index=True)
+    row_merge_output_path = os.path.join(row_merge_output_path, "final_merged_output.xlsx")
 
-    # Save the final merged DataFrame into an Excel file
-    final_merge.to_excel(final_output_path, index=False)
+    # STEP 16: Save the row merged DataFrame into an Excel file
+    row_merge.to_excel(row_merge_output_path, index=False)
 
+if __name__ == "__main__":
 
-# MERGE PROCESSING
-merge_by_plate()
+    # STEP 1: Get the root directory
+    main_directory = "./"
+
+    # STEP 2: Get the Primer Index data directory (Note: Edit this filepaths as needed)
+    primer_index_folder = "../sample_data/intake3_data/intake3_data_set1/intake3_set1_pi/"
+    primer_index_path = os.path.join(main_directory, primer_index_folder)
+
+    # STEP 3: Get the FCS data directory (Note: Edit this filepaths as needed)
+    fcs_data_folder = "../sample_data/intake3_data/intake3_data_set1/intake3_set1_fcs/"
+    fcs_data_path = os.path.join(main_directory, fcs_data_folder)
+
+    # STEP 4: Organise files to folder
+    organising_files(main_directory, primer_index_path, fcs_data_path)
+
+    # STEP 5: Create folders to store the COLUMN and ROW merge outputs
+    column_merge_output = "column_merge_output"
+    column_merge_output_path = os.path.join(main_directory, column_merge_output)
+    os.makedirs(column_merge_output_path, exist_ok=True)
+    row_merge_output = "row_merge_output"
+    row_merge_output_path = os.path.join(main_directory, row_merge_output)
+    os.makedirs(row_merge_output_path, exist_ok=True)
+
+    # STEP 6: Perform the merging process
+    merge_by_plate(fcs_data_path, primer_index_path, column_merge_output_path, row_merge_output_path)

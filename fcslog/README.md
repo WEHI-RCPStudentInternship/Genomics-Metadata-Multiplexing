@@ -35,4 +35,8 @@ This markdown file contains the following content:
 
 ### Using The App
 1. Using the command line interface, navigate to the ```fcslog``` directory
-2. Run the app: ```python3 main.py```
+2. Within the ```main.py``` file, edit the following variables by adjusting their file path values:
+    - ```fcs_data_folder``` the folder containing the set of FCS files to merge
+    - ```primer_index_folder``` the folder containing the set of Index Primer files to merge
+3. Save the file when locating the desired FCS and Index Prime folders
+4. Merge Command: ```python3 main.py```

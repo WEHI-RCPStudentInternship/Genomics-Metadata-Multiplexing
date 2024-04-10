@@ -18,10 +18,12 @@ This markdown file contains the following contents:
 - [```fcs_files```](./fcs_files/): a collection of **RAW** and **PROCESSED** FCS files
     - [```c014_files```](./fcs_files/c014_fcs/): **RAW** FCS files produced by the flow cytometry machine (i.e. Aria Beckman)
         - [```intake3_c014_index_file_analysis```](./fcs_files/c014_fcs/intake3_c014_index_file_analysis/): Analysis ```c014``` results conducted by the 2023 Semester 2 intake
-    - [```flowjo_fcs```](./fcs_files/flowjo_fcs/): a collection of **manually edited** and **PROCESSED** (i.e. FlowJo ```.xlsx``` outputs) FCS files produced by FlowJo
     - [```intake4_fcs```](./fcs_files/intake4_fcs/): a collection of **RAW** FCS values used by the 2023-2024 Summer intake
+- [```pi_files```](./pi_files/): a collection of **Prier Index** files
+    - [```flowjo_pi```](./pi_files/flowjo_pi/): a collection of **manually edited** and **PROCESSED** (i.e. FlowJo ```.xlsx``` outputs) primer index files
 - [```gt_files```](./gt_files/): a collection of files provided by the WEHI genomics team
-    - [```gt_pi_files```](./gt_files/gt_pi_files/): a collection of **primer index** files given by the WEHI genomics team
+    - [```gt_fcs```](./gt_files/gt_fcs/): a collection of FCS files given by the WEHI genomics team
+    - [```gt_fcs```](./gt_files/gt_pi/): a collection of **Primer Index** files given by the WEHI genomics team
     - [```gt_demultiplexing```](./gt_files/gt_demultiplexing/): files used for the demultiplexing step within the [CEL-Seq2](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Problem-Space#cel-seq2-workflow) workflow
     - Remaining files have **NO FURTHER** documentation by previous intakes
 - [```intake3_data```](./intake3_data/): test data used by the 2023 Semester 2 intake to develop their [FCSLOG](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/FCSLOG) merge application

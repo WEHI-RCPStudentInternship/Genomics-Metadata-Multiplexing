@@ -12,10 +12,8 @@ This markdown file contains the following content:
     - [Using The App](#using-the-app)
 
 ## Directory Structure
-- [```main.py```](./main.py):  the main entry for the application
-- [```frontend```](./frontend/): handles the user interface that the non-technical users interact with
-- [```backend```](./backend/): handles the logic for the merge mechanism
-- [```data```](./data/): the test data used to validate the integrity of this implementation
+- [```main.py```](./main.py): Performs the FCS and Index Primer merge process
+- [```archive```](./archive/): All **UNUSED** assets
 
 ## Installation And Use
 ### Setting Up Flask

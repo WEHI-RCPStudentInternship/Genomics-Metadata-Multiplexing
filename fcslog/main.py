@@ -4,32 +4,57 @@ import pandas as pd
 
 def organising_files(directory, primer_index_path, fcs_data_path):
     """
-    
+    Organises FCS and Index Primer files within a specified `directory` into separate folders.
+
+    :Parameters:
+        - `directory`: The directory `main.py` is executed in
+        - `fcs_data_path`: The file path of FCS data the folder
+        - `primer_index_path`: The file path of the Index Primer data folder
     """
-    # Automatically create Primer Index Folder
+    # STEP 1: Automatically create Primer Index folder
     os.makedirs(primer_index_path, exist_ok=True)
 
-    # Automatically create FCS Data Folder
+    # STEP 2: Automatically create FCS data folder
     os.makedirs(fcs_data_path, exist_ok=True)
 
+    # STEP 3: Loop through each FCS and Index Primer file
     for file in os.listdir(directory):
+        
+        # STEP 4: Only organise FCS and Index Primer excel spreadsheets
         if file.endswith(".xlsx"):
+            
+            # CASE 4A: Found an Index Primer file
             if "PRIMER" in file.upper():
                 target_folder = primer_index_path
+
+            # CASE 4B: Found an FCS file
             if "FCS" in file.upper():
                 target_folder = fcs_data_path
+
+            # CASE 4C: File is neither FCS nor Index Primer
             else:
                 continue
 
+            # STEP 5: Move the FCS and Index Primer files within their respective directories
             source_path = os.path.join(directory, file)
             target_path = os.path.join(target_folder, file)
             shutil.move(source_path, target_path)
 
+    # STEP 6: Indicate that files were organised
     print("Files organized successfully.")
 
 def merge_by_plate(fcs_data_path, primer_index_path, column_merge_output_path, row_merge_output_path):
     """
+    Performs COLUMN and ROW merges for a given set of FCS and Index Primer files.
 
+    :Parameters:
+        - `fcs_data_path`: The file path of FCS data the folder
+        - `primer_index_path`: The file path of the Index Primer data folder
+        - `column_merge_output_path`: The filepath of the COLUMN merge output folder
+        - `row_merge_output_path`: The filepath of the ROW merge output folder
+
+    :Output:
+        The outputs of the COLUMN and ROW (i.e. final) files within separate output directories.
     """
 
     # STEP 1: Merge files from the Index Primer folder and FCS folder with matching code/prefix names

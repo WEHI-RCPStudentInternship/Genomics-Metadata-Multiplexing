@@ -21,6 +21,7 @@ This markdown file contains the following contents:
     - [```intake4_fcs```](./fcs_files/intake4_fcs/): a collection of **RAW** FCS values used by the 2023-2024 Summer intake
 - [```pi_files```](./pi_files/): a collection of **Prier Index** files
     - [```flowjo_pi```](./pi_files/flowjo_pi/): a collection of **manually edited** and **PROCESSED** (i.e. FlowJo ```.xlsx``` outputs) primer index files
+    - [```pi_templates```](./pi_files/pi_templates/): templates for **primer index** files
 - [```gt_files```](./gt_files/): a collection of files provided by the WEHI genomics team
     - [```gt_fcs```](./gt_files/gt_fcs/): a collection of FCS files given by the WEHI genomics team
     - [```gt_fcs```](./gt_files/gt_pi/): a collection of **Primer Index** files given by the WEHI genomics team
@@ -38,7 +39,5 @@ This markdown file contains the following contents:
         - [```intake3_set2_column_merge```](./intake3_data/intake3_data_set2/intake3_set2_column_merge/): files after the 1st (i.e. column) merge between **FCS** and **Index Primer** files that share the **SAME** code
         - [```intake3_set2_row_merge.xlsx```](./intake3_data/intake3_data_set2/intake3_set2_row_merge.xlsx): a file after the 2nd (i.e. row) merge between files in the ```intake3_set2_column_merge``` directory
         - [```intake3_set2_test.py```](./intake3_data/intake3_data_set2/intake3_set2_test.py): The Python Script used to generate the column and row merges
-- [```template_files```](./template_files/): a collection of assets that show how certain files are formatted
-    - [```pi_templates```](./template_files/pi_templates/): templates for **primer index** files
-    - [```sister_repo_templates```](./template_files/sister_repo_templates/): example templates used by WEHI's subject matter expert, Marek Cmero, for the [celseq-sample-sheet-generator](https://github.com/WEHIGenomicsRnD/celseq-sample-sheet-generator) repository
+- [```sister_repo_templates```](./sister_repo_templates/): example templates used by WEHI's subject matter expert, Marek Cmero, for the [celseq-sample-sheet-generator](https://github.com/WEHIGenomicsRnD/celseq-sample-sheet-generator) repository
 - [```miscellaneous```](./miscellaneous/): files that have remained **UNDOCUMENTED** by previous intakes

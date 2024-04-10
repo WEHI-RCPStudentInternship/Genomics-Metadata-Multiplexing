@@ -19,7 +19,7 @@ This markdown file contains the following contents:
     - [```c014_files```](./fcs_files/c014_fcs/): **RAW** FCS files produced by the flow cytometry machine (i.e. Aria Beckman)
         - [```intake3_c014_index_file_analysis```](./fcs_files/c014_fcs/intake3_c014_index_file_analysis/): Analysis ```c014``` results conducted by the 2023 Semester 2 intake
     - [```intake4_fcs```](./fcs_files/intake4_fcs/): a collection of **RAW** FCS values used by the 2023-2024 Summer intake
-- [```pi_files```](./pi_files/): a collection of **Prier Index** files
+- [```pi_files```](./pi_files/): a collection of **Primer Index** files
     - [```flowjo_pi```](./pi_files/flowjo_pi/): a collection of **manually edited** and **PROCESSED** (i.e. FlowJo ```.xlsx``` outputs) primer index files
     - [```pi_templates```](./pi_files/pi_templates/): templates for **primer index** files
 - [```gt_files```](./gt_files/): a collection of files provided by the WEHI genomics team

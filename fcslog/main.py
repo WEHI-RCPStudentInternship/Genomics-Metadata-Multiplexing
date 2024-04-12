@@ -43,15 +43,14 @@ def organising_files(directory, primer_index_path, fcs_data_path):
     # STEP 6: Indicate that files were organised
     print("Files organized successfully.")
 
-def merge_by_plate(fcs_data_path, primer_index_path, column_merge_output_path, row_merge_output_path):
+def merge_by_plate(fcs_data_path, primer_index_path, merge_output_path):
     """
     Performs COLUMN and ROW merges for a given set of FCS and Index Primer files.
 
     :Parameters:
         - `fcs_data_path`: The file path of FCS data the folder
         - `primer_index_path`: The file path of the Index Primer data folder
-        - `column_merge_output_path`: The filepath of the COLUMN merge output folder
-        - `row_merge_output_path`: The filepath of the ROW merge output folder
+        - `merge_output_path`: The file path that stores the merge outputs
 
     :Output:
         The outputs of the COLUMN and ROW (i.e. final) files within separate output directories.
@@ -90,18 +89,18 @@ def merge_by_plate(fcs_data_path, primer_index_path, column_merge_output_path, r
 
                 # STEP 10: Save the COLUMN merged outputs within an output folder
                 merged_sheet_name = f"column_merged_plate_{file_name_prefix}.xlsx"
-                merged_sheet_path = os.path.join(column_merge_output_path, merged_sheet_name)
+                merged_sheet_path = os.path.join(merge_output_path, merged_sheet_name)
                 merged_df.to_excel(merged_sheet_path, index=False)
 
     # STEP 11: Perform ROW merge (i.e. Merge all COLUMN outputs together)
     row_df = []
-    for column_file in os.listdir(column_merge_output_path):
+    for column_file in os.listdir(merge_output_path):
         
         # STEP 12: Ensure the column file is an excel spreadsheet
         if column_file.endswith("xlsx"):
             
             # STEP 13: Get the file path of the column file
-            column_file_path = os.path.join(column_merge_output_path, column_file)
+            column_file_path = os.path.join(merge_output_path, column_file)
             #print(f"File {column_file_path}")
 
             # STEP 14: Read and merge (by ROW) the column files
@@ -110,10 +109,10 @@ def merge_by_plate(fcs_data_path, primer_index_path, column_merge_output_path, r
 
     # STEP 15: Concatonate the row dataframes together
     row_merge = pd.concat(row_df, ignore_index=True)
-    row_merge_output_path = os.path.join(row_merge_output_path, "final_merged_output.xlsx")
+    row_file_path = os.path.join(merge_output_path, "row_merged_output.xlsx")
 
     # STEP 16: Save the row merged DataFrame into an Excel file
-    row_merge.to_excel(row_merge_output_path, index=False)
+    row_merge.to_excel(row_file_path, index=False)
 
 if __name__ == "__main__":
 
@@ -131,13 +130,9 @@ if __name__ == "__main__":
     # STEP 4: Organise files to folder
     organising_files(main_directory, primer_index_path, fcs_data_path)
 
-    # STEP 5: Create folders to store the COLUMN and ROW merge outputs
-    column_merge_output = "column_merge_output"
-    column_merge_output_path = os.path.join(main_directory, column_merge_output)
-    os.makedirs(column_merge_output_path, exist_ok=True)
-    row_merge_output = "row_merge_output"
-    row_merge_output_path = os.path.join(main_directory, row_merge_output)
-    os.makedirs(row_merge_output_path, exist_ok=True)
+    # STEP 5: Create a folder to store the COLUMN and ROW merge outputs
+    merge_output_path = os.path.join(main_directory, "merge_output")
+    os.makedirs(merge_output_path, exist_ok=True)
 
     # STEP 6: Perform the merging process
-    merge_by_plate(fcs_data_path, primer_index_path, column_merge_output_path, row_merge_output_path)
+    merge_by_plate(fcs_data_path, primer_index_path, merge_output_path)

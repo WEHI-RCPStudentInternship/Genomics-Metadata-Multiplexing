@@ -1,8 +1,10 @@
 # FCSLOG (Codebase)
 
-Welcome to the ```fcslog``` [codebase](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/tree/main/fcslog) that was developed by the 2023 Semester 2 intake. 
+Welcome to the ```fcslog``` [codebase](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/tree/main/fcslog) that was developed by the [2023 Semester 2](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Contributors#intake-3-2023-semester-2) intake. 
 
-This is the 1st implementation of the [web application](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Problem-Space#web-application) specified in the [Problem Space](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Problem-Space) wiki page. For extensive documentation that outlines the this implementation's features, architecture and future, visit the [FCSLOG](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/FCSLOG) wiki page.
+This is the 1st implementation of the [web application](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Problem-Space#web-application) specified in the [Problem Space](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Problem-Space) wiki page. 
+
+For extensive documentation that outlines the this implementation's features, architecture and future, visit the [FCSLOG](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/FCSLOG) wiki page.
 
 This markdown file contains the following content:
 1. [Directory Structure](#directory-structure)

@@ -16,7 +16,7 @@ This markdown file contains the following content:
 - [```sample_data```](./sample_data/): Stores files such as FCS, Primer Index spreadsheets, templates, etc which are items needed for the merge process
 - [```markdown_assets```](./markdown_assets/): Stores the images used to make the markdown files within this repository, or the wiki pages that document the technicalities of the GMM project
 - [```fcslog```](./fcslog/): is name of the 2023 Semester 2 intake's implementation of the [web application](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Problem-Space#web-application) specified in the [Problem Space](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Problem-Space) wiki page
-- [```Shiny-app```](./Shiny-app/): is the 2023-2024 Summer intake's implementation of the web application specified in the Problem Space wiki page
+- [```shiny_app```](./shiny_app/): is the 2023-2024 Summer intake's implementation of the web application specified in the Problem Space wiki page
 
 NOTE: As **fcslog** and **Shiny-app** are 2 separate implementations of would-be web applications, they should be treated as individual repositories. That is, build assets, .gitignore files, test data and outputs, etc... should be stored within their own respective directories.
 

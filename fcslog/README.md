@@ -10,6 +10,8 @@ This markdown file contains the following content:
     - [Setting Up Flask](#setting-up-flask)
     - [Installing Backend Dependencies](#installing-backend-dependencies)
     - [Using The App](#using-the-app)
+3. [Test Data Used](#test-data-used)
+    - [A Note On FCS Files ](#a-note-on-fcs-files)
 
 ## Directory Structure
 - [```main.py```](./main.py): Performs the FCS and Index Primer merge process
@@ -40,3 +42,19 @@ This markdown file contains the following content:
     - ```primer_index_folder``` the folder containing the set of Index Primer files to merge
 3. Save the file when locating the desired FCS and Index Prime folders
 4. Merge Command: ```python3 main.py```
+
+## Test Data Used
+This implementation uses [2 sets](../sample_data/intake3_data/) of test data being:
+1. [Plates LC370-LC372 (Set 1)](../sample_data/intake3_data/intake3_data_set1/) which contain:
+    - FCS Folder Filepath: ```../sample_data/intake3_data/intake3_data_set1/intake3_set1_fcs/```
+    - Index Primer Folder Filepath: ```../sample_data/intake3_data/intake3_data_set1/intake3_set1_pi/```
+2. [Plates C011, C051 and C078 (Set 2)](../sample_data/intake3_data/intake3_data_set2/) which contain:
+    - FCS Folder: ```../sample_data/intake3_data/intake3_data_set2/intake3_set2_fcs/```
+    - Index Primer Folder: ```../sample_data/intake3_data/intake3_data_set2/intake3_set2_pi/```
+
+Within each set there exists an FCS and Index Primer folder. To use these folders, please copy the folder's file path and paste them into the variables metioned in the [Using The App](#using-the-app) section in step 2.
+
+### A Note On FCS Files 
+This implementation does **NOT** use raw FCS files. Instead, notice that the FCS files mentioned above have the ```.xlsx``` extension (excel spreadsheet). 
+
+Although the 2023 Semester 2 intake did **NOT** document this design decision, it is likely that FlowJo was used to convert these raw ```.fcs``` files into ```.xlsx``` files.

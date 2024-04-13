@@ -1,0 +1,58 @@
+
+.dropbox-area {
+  border: 2px dashed #cccccc;
+  border-radius: 5px;
+  text-align: center;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.dropbox-area:hover {
+  background-color: #f9f9f9;
+}
+
+.dropbox-area.disabled {
+  background-color: #eeeeee;
+  cursor: not-allowed;
+}
+
+.dropbox-area.enabled {
+  border-color: #007bff;
+}
+
+.dropbox-label {
+  margin-bottom: 0;
+}
+
+.fileUploaderBar {
+    display: flex;
+    justify-content: space-between; /* Distribute space evenly between the file uploaders */
+    flex-wrap: wrap; /* Allow the items to wrap as needed */
+    gap: 10px; /* Space between the file uploaders */
+}
+
+.dropbox-area {
+    flex: 1; /* Grow to fill the space */
+    min-width: 180px; /* Minimum width of each dropbox area to ensure they don't get too narrow */
+    border: 2px dashed #cccccc;
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9; /* Light gray background */
+    cursor: pointer;
+}
+
+.dropbox-area.disabled {
+    background-color: #eeeeee; /* Slightly darker gray background for disabled state */
+    cursor: not-allowed;
+}
+
+.dropbox-area h4 {
+    margin-top: 0;
+    color: #333; /* Dark text color for the header */
+}
+
+/* Additional hover and active state styles can be added here */
+.dropbox-area:not(.disabled):hover {
+    background-color: #e0f0ff; /* Light blue background on hover for enabled drop areas */
+}

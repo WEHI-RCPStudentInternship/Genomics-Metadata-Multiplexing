@@ -4,9 +4,8 @@ library(shinyjs)
 
 # Ensure your ui_component functions return tabPanel objects or are wrapped in tabPanel when called here.
 source('R/ui_components/homepage.R')
-source('R/ui_components/func1_plate_to_spreadsheet.R')
-source('R/ui_components/func2_collate_fcs_data.R')
-source('R/ui_components/func3_merge_fcs_data.R')
+source('R/ui_components/operations.R')
+source('R/ui_components/tutorial.R')
 
 addResourcePath("assets", "R/www/assets") 
 
@@ -16,12 +15,12 @@ navbar_title <- div(
 )
 
 ui <- fluidPage(
-    useShinyjs(),  # Initialize shinyjs for enhanced functionality
+    useShinyjs(), 
+    includeCSS("R/www/operations.css"),
     navbarPage(id = "mainTabs",
                title = navbar_title,
                homepage(),  
-               func1_plate_to_spreadsheet(),
-               func2_collate_fcs_data(),
-               func3_merge_fcs_data()
+               operations(),
+               tutorial()
     )
 )

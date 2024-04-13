@@ -1,10 +1,10 @@
 # shiny_app (Codebase)
 
-Welcome to the ```shiny_app``` [codebase]() that was developed by the [2023-2024 Summer](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Contributors#intake-4-2023-2024-summer) intake.
+Welcome to the ```shiny_app``` [codebase](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/tree/main/shiny_app) that was developed by the [2023-2024 Summer](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Contributors#intake-4-2023-2024-summer) intake.
 
 This is the 2nd implementation of the [web application](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Problem-Space#web-application) specified in the [Problem Space](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Problem-Space) wiki page. 
 
-For extensive documentation that outlines the this implementation's features, architecture and future, visit the [shiny_app]() wiki page.
+For extensive documentation that outlines the this implementation's features, architecture and future, visit the [shiny_app](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/shiny_app) wiki page.
 
 This implementation is conisdered **PARTIAL** as it only merges FCS files together and NOT the Primer Index files.
 

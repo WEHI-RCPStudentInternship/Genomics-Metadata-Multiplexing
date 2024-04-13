@@ -2,7 +2,7 @@
 
 Welcome to the ```shiny_for_python``` version.
 
-For more information on this version's features, software dependencies, backend and limitations, consult the [Web Application]() section within the [shiny_app]() wiki page.
+For more information on this version's features, software dependencies, backend and limitations, consult the [Web Application](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/shiny_app#web-application) section within the [shiny_app](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/shiny_app) wiki page.
 
 This markdown file contains the following contents:
 1. [Directory Structure](#directory-structure)

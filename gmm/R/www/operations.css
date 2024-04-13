@@ -26,33 +26,79 @@
 
 .fileUploaderBar {
     display: flex;
-    justify-content: space-between; /* Distribute space evenly between the file uploaders */
-    flex-wrap: wrap; /* Allow the items to wrap as needed */
-    gap: 10px; /* Space between the file uploaders */
+    flex-direction: column; /* Arrange items in a column */
+    gap: 15px; /* Space between items */
 }
 
 .dropbox-area {
-    flex: 1; /* Grow to fill the space */
-    min-width: 180px; /* Minimum width of each dropbox area to ensure they don't get too narrow */
     border: 2px dashed #cccccc;
     border-radius: 5px;
     text-align: center;
     padding: 20px;
-    background-color: #f9f9f9; /* Light gray background */
     cursor: pointer;
+    background-color: #f9f9f9;
 }
 
 .dropbox-area.disabled {
-    background-color: #eeeeee; /* Slightly darker gray background for disabled state */
+    background-color: #eeeeee;
     cursor: not-allowed;
 }
 
-.dropbox-area h4 {
-    margin-top: 0;
-    color: #333; /* Dark text color for the header */
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
 }
 
-/* Additional hover and active state styles can be added here */
-.dropbox-area:not(.disabled):hover {
-    background-color: #e0f0ff; /* Light blue background on hover for enabled drop areas */
+/* Style for the disabled submit button */
+.btn.disabled, .btn:disabled {
+    background-color: #cccccc;
+    border-color: #cccccc;
+    cursor: not-allowed;
 }
+
+/* Adjust as needed for enabled state */
+.btn.enabled {
+    background-color: #007bff; /* Bootstrap primary color */
+    border-color: #007bff;
+    cursor: pointer;
+}
+
+.custom-file-input .shiny-file-input {
+    height: 150px;
+    border: 2px dashed blue;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.custom-file-input .shiny-file-input-progress {
+    width: 100%;
+}
+
+.icons-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.file-icon {
+    max-height: 100px; /* Adjust based on your preference */
+    max-width: 25%; /* Adjust so icons fit well within the container */
+}
+
+.sidebar-panel {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 5px;
+}
+.input-field {
+    margin-bottom: 20px;
+}
+
+

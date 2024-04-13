@@ -10,7 +10,7 @@ This markdown file contains the following content:
 3. [Naming Conventions For Files And Directories](#naming-conventions-for-files-and-directories)
 4. [Acknowledgements](#acknowledgements)
 
-> This codebase was developed by interns and open source contributors and serves as the **SECONDARY** repository for the GMM project. For the **PRIMARY** codebase, visit the [sister repository](https://github.com/WEHIGenomicsRnD/celseq-sample-sheet-generator) and it's corresponding [wiki page](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Sister-Repository).
+> This codebase was developed by interns and open source contributors and serves as the **PRIMARY** repository for the GMM project. For the **SECONDARY** codebase, visit the [sister repository](https://github.com/WEHIGenomicsRnD/celseq-sample-sheet-generator) and it's corresponding [wiki page](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Sister-Repository).
 
 ## Repository Structure
 - [```sample_data```](./sample_data/): Stores files such as FCS, Primer Index spreadsheets, templates, etc which are items needed for the merge process

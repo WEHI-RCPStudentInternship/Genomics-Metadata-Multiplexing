@@ -1,22 +1,25 @@
 tutorial <- function() {
     tabPanel(
         'Tutorial',
-        tags$head(
-            tags$style(HTML("
-        * {font-family: 'Roboto'; }
-        h1, h2, h3 { font-family: 'Georgia', serif; }
-        h2 { font-size: 20px; }
-        h3 { font-size: 16px; }
-        p { font-size: 11px; }
-        .homepage-content { padding-bottom: 1rem;}
-        ul { padding-left: 0; }
-        li { margin-left: 14px; }
-      "))
+        value = "tutorialTab",
+        sidebarPanel(
+            h2("Tutorial"),
+            p("This section provides a comprehensive guide and tutorials related to the Genomics Metadata Multiplexing Project."),
+            selectInput("tutorialChoice", "Choose a tutorial:",
+                        choices = list("Introduction" = "intro",
+                                       "Data Preparation" = "dataPrep",
+                                       "Analysis" = "analysis",
+                                       "Results Interpretation" = "results")),
+            actionButton("startTutorial", "Start Tutorial", class = "btn action-button")
         ),
-        div(
-            class = 'homepage-content',
-            shinyjs::useShinyjs(), # Initialize shinyjs
-            tags$h2('Tutorial')
+        mainPanel(
+            h3(textOutput("tutorialTitle")),
+            div(id = "tutorialContent",
+                # Placeholder for tutorial content
+                # Dynamic UI elements will be rendered based on the tutorial choice
+                uiOutput("tutorialOutput")
+            )
         )
     )
 }
+

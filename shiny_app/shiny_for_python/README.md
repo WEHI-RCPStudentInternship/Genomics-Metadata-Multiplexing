@@ -5,9 +5,14 @@ Welcome to the ```shiny_for_python``` version.
 For more information on this version's features, software dependencies, backend and limitations, consult the [Web Application]() section within the [shiny_app]() wiki page.
 
 This markdown file contains the following contents:
-1. [Python Interpreter And Environment Setup](#python-interpreter-and-environment-setup)
-2. [Required Python Packages](#required-python-packages)
-3. [Running the Python Application](#running-the-python-application)
+1. [Directory Structure](#directory-structure)
+2. [Python Interpreter And Environment Setup](#python-interpreter-and-environment-setup)
+3. [Required Python Packages](#required-python-packages)
+4. [Running the Python Application](#running-the-python-application)
+
+## Directory Structure
+- [```app_python_final.py```](./app_python_final.py): The **FINAL** Flask implementation
+- [```archive```](./archive/): Unused assets
 
 ## Python Interpreter And Environment Setup
 

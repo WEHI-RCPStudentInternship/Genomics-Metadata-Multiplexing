@@ -5,9 +5,15 @@ Welcome to the ```shiny_for_r``` version.
 For more information on this version's features, software dependencies, backend and limitations, consult the [Web Application]() section within the [shiny_app]() wiki page.
 
 This markdown file contains the following contents:
-1. [R Set Up And Required R Packages](#r-set-up-and-required-r-packages)
-2. [Configuring Python Interpreter in RStudio](#configuring-python-interpreter-in-rstudio)
-3. [Running the R Application](#running-the-r-application)
+1. [Directory Structure](#directory-structure)
+2. [R Set Up And Required R Packages](#r-set-up-and-required-r-packages)
+3. [Configuring Python Interpreter in RStudio](#configuring-python-interpreter-in-rstudio)
+4. [Running the R Application](#running-the-r-application)
+
+## Directory Structure
+- [```app_R_final.R```](./app_R_final.R): The web application itself
+- [```func.py```](./func.py): Contains [FCSParser](https://pypi.org/project/fcsparser/) for scale values and [Flowkit](https://flowkit.readthedocs.io/en/latest/) for channel values
+- [```archive```](./archive/): Unused assets
 
 ## R Set Up And Required R Packages
 

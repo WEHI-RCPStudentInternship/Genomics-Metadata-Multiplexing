@@ -2,16 +2,22 @@
 operationServer <- function(input, output, session) {
     # Dynamic UI for displaying file input boxes based on the selected operation
     output$fileInputUI <- renderUI({
+        tags$head(
+            tags$style(HTML("
+            .custom-file-input-group .shiny-file-input { margin-bottom: 5px; }
+        "))
+        )
+        
         switch(input$operation,
                "plateLayout" = fileInput("plateFile", "Upload Plate Layout:", accept = c(".xlsx")),
                "collateFCS" = fileInput("fcsFiles", "Upload FCS Files:", accept = c(".fcs"), multiple = TRUE),
-               "mergeDataSampleSheet" = tagList(
-                   fileInput("sampleSheet", "Upload Sample Sheet:", accept = c(".tsv", ".xlsx")),
-                   fileInput("templateSheet", "Upload Template Sheet:", accept = c(".xlsx"))
+               "mergeDataSampleSheet" = div(class = "custom-file-input-group",
+                                            fileInput("sampleSheet", "Upload Sample Sheet:", accept = c(".tsv", ".xlsx")),
+                                            fileInput("templateSheet", "Upload Template Sheet:", accept = c(".xlsx"))
                ),
-               "mergeIndexFile" = tagList(
-                   fileInput("indexFile", "Upload Index File:", accept = c(".xlsx")),
-                   fileInput("templateSheetForIndex", "Upload Template Sheet:", accept = c(".xlsx"))
+               "mergeIndexFile" = div(class = "custom-file-input-group",
+                                      fileInput("indexFile", "Upload Index File:", accept = c(".xlsx")),
+                                      fileInput("templateSheetForIndex", "Upload Template Sheet:", accept = c(".xlsx"))
                )
         )
     })

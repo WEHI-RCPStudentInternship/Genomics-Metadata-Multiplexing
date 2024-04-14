@@ -18,6 +18,7 @@ ui <- fluidPage(
     includeCSS("R/www/global.css"),
     includeCSS("R/www/operations.css"),
     tags$script(src = "https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"),
+    title = "WEHI Genomics Metadata Multiplexing Project",
     navbarPage(id = "mainTabs",
                title = navbar_title,
                homepage(),  

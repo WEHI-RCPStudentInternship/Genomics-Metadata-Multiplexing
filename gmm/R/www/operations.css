@@ -1,0 +1,123 @@
+
+.dropbox-area {
+  border: 2px dashed #cccccc;
+  border-radius: 5px;
+  text-align: center;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.dropbox-area:hover {
+  background-color: #f9f9f9;
+}
+
+.dropbox-area.disabled {
+  background-color: #eeeeee;
+  cursor: not-allowed;
+}
+
+.dropbox-area.enabled {
+  border-color: #007bff;
+}
+
+.dropbox-label {
+  margin-bottom: 0;
+}
+
+.fileUploaderBar {
+    display: flex;
+    flex-direction: column; /* Arrange items in a column */
+    gap: 15px; /* Space between items */
+}
+
+.dropbox-area {
+    border: 2px dashed #cccccc;
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+.dropbox-area.disabled {
+    background-color: #eeeeee;
+    cursor: not-allowed;
+}
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+/* Style for the disabled submit button */
+.btn.disabled, .btn:disabled {
+    background-color: #cccccc;
+    border-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Adjust as needed for enabled state */
+.btn.enabled {
+    background-color: #007bff; /* Bootstrap primary color */
+    border-color: #007bff;
+    cursor: pointer;
+}
+
+.custom-file-input .shiny-file-input {
+    height: 150px;
+    border: 2px dashed blue;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.custom-file-input .shiny-file-input-progress {
+    width: 100%;
+}
+
+.icons-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.file-icon {
+    max-height: 100px; /* Adjust based on your preference */
+    max-width: 25%; /* Adjust so icons fit well within the container */
+}
+
+.sidebar-panel {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 5px;
+}
+.input-field {
+    margin-bottom: 20px;
+}
+
+.form-group.shiny-input-container {
+    display: flex; /* Enables Flexbox for the container */
+    flex-direction: column;
+    justify-content: center; /* Centers children horizontally */
+
+}
+
+.input-group {
+
+}
+
+.custom-file-input-group .shiny-file-input {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+}
+
+

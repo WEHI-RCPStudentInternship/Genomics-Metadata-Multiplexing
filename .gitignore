@@ -107,6 +107,7 @@ celerybeat.pid
 .venv
 env/
 venv/
+renv/
 ENV/
 env.bak/
 venv.bak/
@@ -147,3 +148,7 @@ prototypes/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+gmm/.Rhistory
+gmm/.RData
+
+

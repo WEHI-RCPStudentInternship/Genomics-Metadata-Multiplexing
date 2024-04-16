@@ -12,5 +12,4 @@ server <- function(input, output, session) {
 
     operationServer(input, output, session)
     
-    tutorialServer(input, output, session)
 }

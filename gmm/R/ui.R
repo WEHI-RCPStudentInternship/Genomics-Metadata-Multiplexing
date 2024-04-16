@@ -14,6 +14,13 @@ navbar_title <- div(
 )
 
 ui <- fluidPage(
+    tags$head(
+        tags$script(HTML("
+            function clearFileInput(id) {
+                $('#' + id).val('');
+            }
+        "))
+    ),
     useShinyjs(), 
     includeCSS("R/www/global.css"),
     includeCSS("R/www/operations.css"),

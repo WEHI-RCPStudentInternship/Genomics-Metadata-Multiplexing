@@ -5,11 +5,13 @@ source("R/utils/custom_file_input.R")
 source("R/server_components/tutorial_server.R")
 source("R/server_components/operations_server.R")
 source("R/server_components/utils.R")
+source("R/server_components/fileUploaderPlateToLayout.R")
 
 server <- function(input, output, session) {
     
     switchTab(input, output, session)
-
     operationServer(input, output, session)
     
+    # file upload
+    fileUploaderPlateToLayout(input, output, session)
 }

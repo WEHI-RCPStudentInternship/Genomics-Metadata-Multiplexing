@@ -15,6 +15,8 @@ operations <- function() {
                                      "Merge Primer Index File" = "mergeIndexFile")),
             uiOutput("operationDetails"),  # Dynamic UI for operation details and file inputs
             actionButton("submitBtn", "Submit", class = "btn action-button disabled", disabled = TRUE)  # Initially disabled submit button
+            
+            
         ),
         mainPanel(
 

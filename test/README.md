@@ -8,7 +8,7 @@ This document provides a clear guide to testing the functionality of specific op
 
 ## Testing Overview
 
-For testing purposes, we use mock data for experiment number LCE123. **Please note that there is no actual FCS file corresponding to the LCE123 Experiment (including template and sample sheet).** Instead, use the provided mock data for testing.
+For testing purposes, we use mock data for experiment number LCE123. **Please note that there is no actual FCS file corresponding to the LCE123 Experiment (including template and sample sheet).** Instead, use the provided mock data for testing. For mockup data generation, please refer [mockup_test_data.ipynb](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/blob/shiny-r-dev/test/mockup_data/mockup_test_data.ipynb).
 
 ### Input Files for Testing
 

@@ -3,6 +3,34 @@ library(shinyjs)
 library(DT)
 
 server <- function(input, output, session) {
+    # sample file input thumbnail handler
+    observeEvent(input$viewOp1, {
+        showModal(modalDialog(
+            title = "Sample Plate Layout Sheet for Operation 1",
+            tags$img(src = "assets/plate_layout.jpg", style = "width:100%;"),  # Adjust the path and size as needed
+            easyClose = TRUE,
+            footer = NULL
+        ))
+    })
+    
+    observeEvent(input$viewOp3, {
+        showModal(modalDialog(
+            title = "Sample Template Sheet for Operation 3",
+            tags$img(src = "assets/template_sheet.jpg", style = "width:100%;"),  # Adjust the path and size as needed
+            easyClose = TRUE,
+            footer = NULL
+        ))
+    })
+    
+    observeEvent(input$viewOp4, {
+        showModal(modalDialog(
+            title = "Sample Primer Index File for Operation 4",
+            tags$img(src = "assets/primer_index.jpg", style = "width:100%;"),  # Adjust the path and size as needed
+            easyClose = TRUE,
+            footer = NULL
+        ))
+    })
+    
     # Placeholder for the processed data
     processedData <- reactiveVal()
     
@@ -73,4 +101,6 @@ server <- function(input, output, session) {
             }
         }
     )
+    
+
 }

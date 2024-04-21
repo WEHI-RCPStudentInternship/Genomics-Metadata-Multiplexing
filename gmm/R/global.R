@@ -1,6 +1,7 @@
 library(shiny)
 library(shinythemes)
 
+# onStart function definition
 onStart <- function() {
     # Set any options or perform initialisations here
     options(device.ask.default = FALSE, shiny.autoreload = TRUE)
@@ -16,3 +17,6 @@ ui_config <- list(
     theme = shinytheme("paper"),
     lang = "en"
 )
+
+# Running onStart function
+onStart()

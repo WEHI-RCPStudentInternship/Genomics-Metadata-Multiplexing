@@ -1,27 +1,36 @@
 library(shiny)
 library(shinythemes)
-library(shinyjs)
-
-source('R/ui_components/homepage.R')
-source('R/ui_components/operations.R')
-# source('R/ui_components/tutorial.R')
-
-addResourcePath("assets", "R/www/assets") 
-
-navbar_title <- div(
-    style = "display: flex; align-items: center;",
-    img(src = "assets/wehi.png", height = "30px", style = "margin-right: 10px;")
-)
+library(DT)
 
 ui <- fluidPage(
-    useShinyjs(), 
-    includeCSS("R/www/global.css"),
-    includeCSS("R/www/operations.css"),
-    tags$script(src = "https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"),
-    title = "WEHI Genomics Metadata Multiplexing Project",
-    navbarPage(id = "mainTabs",
-               title = navbar_title,
-               homepage(),  
-               operations()
+    theme = shinytheme("flatly"), 
+    tags$header(class = "navbar navbar-static-top",
+                tags$div(class = "container-fluid",
+                         tags$div(class = "navbar-header",
+                                  tags$span(class = "navbar-brand",
+                                            href = "#",
+                                            # Use inline CSS for vertical alignment
+                                            tags$img(src = "assets/wehi.png", height = "30px", style = "vertical-align: middle;"), 
+                                            tags$span("GMM FCS Data Processor", style = "vertical-align: middle; margin-left: 10px;") 
+                                  )
+                         )
+                )
+    ),
+    sidebarLayout(
+        sidebarPanel(
+            fileInput('plate_layout', 'Choose Plate Layout File:', multiple = FALSE, accept = c('.xlsx')),
+            fileInput('fcs_file', 'Choose FCS File:', multiple = FALSE, accept = c('.fcs')),
+            fileInput('template_sheet', 'Choose Template Sheet File:', multiple = FALSE, accept = c('.xlsx')),
+            fileInput('primer_index', 'Choose Primer Index File:', multiple = FALSE, accept = c('.xlsx')),
+            actionButton("process", "Process Files", class = "btn-primary"),
+            selectInput("format", "Select Download Format:",
+                        choices = c("CSV" = "csv", "TSV" = "tsv", "Excel" = "xlsx")),
+            downloadButton("downloadData", "Download", class = "btn-success")
+        ),
+        mainPanel(
+            tags$div(style = "overflow-y: scroll; max-height: 600px; width: 100%;",
+                     DT::dataTableOutput("dataOutput")),
+            style = "max-width: 80%;"
+        )
     )
 )

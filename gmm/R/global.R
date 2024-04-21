@@ -1,7 +1,6 @@
 library(shiny)
 library(shinythemes)
 
-
 # onStart function definition
 onStart <- function() {
     # Set any options or perform initialisations here

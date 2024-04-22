@@ -68,9 +68,9 @@ def collate_fcs_files(fcs_files, upload_dir):
         data = data.sort_values('Time')
         
         plate, sample = get_plate_and_sample_from_filepath(fcs_savepath)
-        data['plate'] = plate
-        data['well_position'] = get_well_positions(meta)
-        data['sample'] = sample
+        data['Plate#'] = plate
+        data['Well position'] = get_well_positions(meta)
+        data['Sample name'] = sample
 
         fcs_data = pd.concat([fcs_data, data])
 
@@ -189,6 +189,7 @@ def plate_to_samplesheet(xlsx_file):
 
     # reorder columns
     full_samplesheet = full_samplesheet[['plate', 'well_position', 'sample']]
+    full_samplesheet.rename({'plate': 'Plate#', 'well_position': 'Well position', 'sample': "Sample name"}, axis=1, inplace=True)
     return full_samplesheet
 
 def load_excel_samplesheet(template_sheet_filepath):
@@ -206,8 +207,9 @@ def load_excel_samplesheet(template_sheet_filepath):
     df.columns = new_columns
     df = df.drop(index=[0, 1])
 
-    df.rename({'Plate#': 'plate', 'Well position': 'well_position', 'Sample name': 'sample'}, axis=1, inplace=True)    
+    # df.rename({'Plate#': 'plate', 'Well position': 'well_position', 'Sample name': 'sample'}, axis=1, inplace=True)    
     return df
+
 
 def merge_data_with_samplesheet(spreadsheet_filepath, fcs_file, template_sheet_filepath):
     '''
@@ -223,16 +225,17 @@ def merge_data_with_samplesheet(spreadsheet_filepath, fcs_file, template_sheet_f
     elif template_sheet_filepath:
        
         template = load_excel_samplesheet(template_sheet_filepath)
-        spreadsheet = pd.read_csv(spreadsheet_filepath, sep='\t')
-        # spreadsheet.rename({'Plate#': 'plate', 'Well position': 'well_position', 'Sample name': 'sample'}, axis=1, inplace=True)
-
-        for plate in spreadsheet.plate.unique():
+        spreadsheet = pd.read_csv(spreadsheet_filepath, sep='\t')  # sample sheet
+        
+        for plate in spreadsheet['Plate#'].unique():
+            
             plate_data = template.copy()
-            plate_data['plate'] = plate
+            plate_data.rename({'Sample name': 'Sample name'}, axis=1, inplace=True)
+            plate_data['Plate#'] = plate
+            # print(plate_data.columns, spreadsheet.columns)
             plate_data = pd.merge(plate_data, spreadsheet,
-                                  left_on=['plate', 'well_position', 'sample'],
-                                  right_on=['plate', 'well_position', 'sample'], how='left')
-
+                                  on=['Plate#', 'Well position', 'Sample name'], how='left')
+            # return plate_data
             merged_data = pd.concat([merged_data, plate_data])
         
     elif not is_xlsx:
@@ -249,4 +252,30 @@ def merge_data_with_samplesheet(spreadsheet_filepath, fcs_file, template_sheet_f
                         left_on=['Plate#', 'Well position', samples_colname],
                         right_on=['plate', 'well_position', 'sample'], how='left')
     else:
-        return pd.merge(merged_data, fcs_data, on=['plate', 'sample', 'well_position'], how='left')
+        # print(fcs_data.columns)
+        return pd.merge(merged_data, fcs_data, on=['Plate#', 'Well position', 'Sample name'], how='left')
+
+
+
+def merge_samples_and_primers(primer_index_file_path, merged_samplesheet_fcs_and_template_sheet_df):
+    """
+    Merges sample sheet and template sheet data with primer and index information from an Excel file.
+    
+    Parameters:
+    - primer_index_file_path: The path to the Excel file containing primer and index information.
+    - merged_samplesheet_fcs_and_template_sheet_df: DataFrame containing merged sample sheet and template sheet data.
+    
+    Returns:
+    - DataFrame with merged information including primer and index data.
+    """
+    # Read primer and index information from Excel
+    primer_index_df = pd.read_excel(primer_index_file_path, sheet_name='Sample primer & index', skiprows=3)
+    # Rename 'Sample name' column to 'Sample'
+    primer_index_df.rename({'Sample name': 'Sample'}, axis=1, inplace=True)
+    
+    # Merge the data frames
+    merged_df = pd.merge(merged_samplesheet_fcs_and_template_sheet_df, primer_index_df, 
+                         on=['Plate#', 'Well position', 'Sample'], 
+                         suffixes=('', '_primer'), how='left')
+    
+    return merged_df

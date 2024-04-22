@@ -155,3 +155,5 @@ gmm/.RData
 temp
 temp/
 .Rprofile
+.RData
+.Rhistory

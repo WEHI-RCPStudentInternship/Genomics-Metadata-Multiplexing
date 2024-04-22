@@ -17,28 +17,15 @@ ui <- fluidPage(
                 )
     ),
     sidebarPanel(
-        div(
-            fileInput('plate_layout', 'Choose Plate Layout File:', multiple = FALSE, accept = c('.xlsx')),
-        ),
-        
-        div(
-            fileInput('fcs_file', 'Choose FCS File:', multiple = FALSE, accept = c('.fcs')),
-        ),
-        
-        div(
-            fileInput('template_sheet', 'Choose Template Sheet File:', multiple = FALSE, accept = c('.xlsx')),
-        ),
-        
-        div(
-            fileInput('primer_index', 'Choose Primer Index File:', multiple = FALSE, accept = c('.xlsx')),
-        ),
-
-        div(),
+        class = "sidebar", 
+        h4("Data Prepraration"), 
+        fileInput('plate_layout', 'Choose Plate Layout File:', multiple = FALSE, accept = c('.xlsx')),
+        fileInput('fcs_file', 'Choose FCS File:', multiple = FALSE, accept = c('.fcs')),
+        fileInput('template_sheet', 'Choose Template Sheet File:', multiple = FALSE, accept = c('.xlsx')),
+        fileInput('primer_index', 'Choose Primer Index File:', multiple = FALSE, accept = c('.xlsx')),
         actionButton("process", "Process Files", class = "btn-primary"),
-        
-        selectInput("format", "Select Download Format:",
-                    choices = c("CSV" = "csv", "TSV" = "tsv", "Excel" = "xlsx")),
-        
+        br(),br(),
+        selectInput("format", "Select Download Format:", choices = c("CSV" = "csv", "TSV" = "tsv", "Excel" = "xlsx")),
         downloadButton("downloadData", "Download", class = "btn-success")
     ),
     mainPanel(

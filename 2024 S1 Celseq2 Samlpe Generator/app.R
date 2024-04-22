@@ -1,6 +1,14 @@
 library(shiny)
 library(reticulate)
 
+if (!requireNamespace("renv", quietly = TRUE)) {
+    install.packages("renv")
+}
+
+# Load renv and restore packages
+renv::load()  
+renv::restore()  
+
 # Define the virtual environment directory
 venv_dir <- "./venv"
 

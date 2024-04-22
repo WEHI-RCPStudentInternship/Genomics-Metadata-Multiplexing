@@ -141,13 +141,60 @@ data_display_handler <- function(input, output, session, processedData) {
     })
 }
 
+homepage_info <- function() {
+    tags$div(
+        h2(" Celseq2 FCS Data Processor"),
+        p("This dashboard execute a series of operations designed to streamline data processing and analysis for GMM (Genetically Modified Microorganisms) testing. Our goal is to create an intuitive and user-friendly testing environment that ensures consistency across all scripts and application."),
+        div(
+            h5("Operation 1: Create Sample Sheet from Plate Layout", style = "font-weight: bold;"),
+            p("Converts the provided 'Plate Layout' sheet into a detailed sample sheet."),
+            actionLink("viewOp1", "See sample Template file")
+        ),
+        div(
+            h5("Operation 2: Combine FCS Files into One Document", style = "font-weight: bold;"),
+            p("Merges multiple FCS files into a single .tsv file.")
+        ),
+        div(
+            h5("Operation 3: Merge All Data into One Comprehensive File", style = "font-weight: bold;"),
+            p("Integrates the sample sheet, a template sheet, and the FCS results."),
+            actionLink("viewOp3", "See sample Template file")
+        ),
+        div(
+            h5("Operation 4 (Optional): Add Primer Index to Comprehensive File", style = "font-weight: bold;"),
+            p("(Optional) Enhances the comprehensive file by adding Primer Index information."),
+            actionLink("viewOp4", "See sample Primer Index file")
+        ),
+
+        style = "padding: 20px;"
+    )
+}
+
+
+ui_display_handler <- function(input, output, session, processedData) {
+    output$dynamicUI <- renderUI({
+        # Check if processedData is NULL or has no rows
+        if (is.null(processedData()) || nrow(processedData()) == 0) {
+            homepage_info()
+        } else {
+            # Data is available, display the DataTable
+            tags$div(style = "overflow-y: scroll; width: 100%;",
+                     DT::dataTableOutput("dataOutput"))
+        }
+    })
+}
+
+
 # Server function
 server <- function(input, output, session) {
     thumbnail_image_handler(input, output, session)
     
     uploadedFilePaths <- data_upload_handler(input, output, session)
     processedData <- data_processing_handler(input, output, session, uploadedFilePaths)
+    
+    ui_display_handler(input, output, session, processedData)
+    
     data_display_handler(input, output, session, processedData)
     
     data_download_handler(input, output, session, processedData)
 }
+

@@ -4,15 +4,28 @@
 
 <img width="1822" alt="image" src="https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/62606765/645a3972-fd07-41a1-a5a4-d9c101134509">
 
+<<<<<<< HEAD
 # How to Run the Shiny R Celseq2 FCS Operation Dashboard (MacOS/Linux)
 
 This guide provides step-by-step instructions on how to set up and run the Shiny R application for the Genomics Metadata Multiplexing project, specifically the "2024 S1 Celseq2 Sample Generator" module. This application is designed to facilitate the processing and analysis of genomics metadata, providing an interactive user interface for various operations.
 
 For Windows, you need to build a new python virtualenv with Python3.9 and install all R dependencies manually. This caused by program achitecture and unfortunately we don't have a better solution unless use program container.
+=======
+## Repository Structure
+- [```gmm```](./gmm/): The 3rd and **CURRENT** version that takes Marek Cmero's Python/Flask web application ported into R Shiny
+- [```test```](./test/): Testing assets that verify the integrity of the [gmm](./gmm/) implementation
+- [```sample_data```](./sample_data/): Stores files such as FCS, Primer Index spreadsheets, templates, etc which are items needed for the merge process
+- [```markdown_assets```](./markdown_assets/): Stores the images used to make the markdown files within this repository, or the wiki pages that document the technicalities of the GMM project
+- [```past_implementations```](./past_implementations/): Discontinued web implementations developed by past interns
+>>>>>>> a32364d (Update file structure in README.md)
 
 ## Prerequisites
 
+<<<<<<< HEAD
 Before running the application, ensure you have the following installed:
+=======
+**Wiki Pages** on the other hand, provides information **NOT** related to the codebase. Examples include the context behind the GMM project, design decisions behind software architecture, etc.
+>>>>>>> a32364d (Update file structure in README.md)
 
 - **R**: The latest version of R is recommended. You can download it from [CRAN](https://cran.r-project.org/).
 - **RStudio**: While not strictly necessary, RStudio provides a convenient and user-friendly environment for running R scripts and applications. Download it from [RStudio's website](https://www.rstudio.com/products/rstudio/download/).

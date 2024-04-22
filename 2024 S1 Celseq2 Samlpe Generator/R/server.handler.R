@@ -63,7 +63,7 @@ data_upload_handler <- function(input, output, session) {
         plate_layout = NULL,
         fcs_file = NULL,
         template_sheet = NULL,
-        primer_index = NULL
+        primer_index = ""
     )
     
     observe({
@@ -97,10 +97,21 @@ data_processing_handler <- function(input, output, session, uploadedFilePaths) {
     
     observeEvent(input$process, {
         # Ensure all required files are uploaded
-        req(uploadedFilePaths$plate_layout, uploadedFilePaths$fcs_file, uploadedFilePaths$template_sheet, uploadedFilePaths$primer_index)
+        req(uploadedFilePaths$plate_layout, uploadedFilePaths$fcs_file, uploadedFilePaths$template_sheet)
+        
+        #filepathTable <- table(
+        #    plate=uploadedFilePaths$plate_layout,
+        #    fcs=uploadedFilePaths$fcs_file,
+        #    template=uploadedFilePaths$template_sheet,
+        #    primer=uploadedFilePaths$primer_index,
+        #)
+        
+        # print(filepathTable)
         
         # Temporary file for processed data output, stored in the "temp/data" directory
         outputFilePath <- tempfile(fileext = ".csv", tmpdir = "temp/data")
+        
+        print(uploadedFilePaths)
         
         # Construct the command to call the external Python script with the updated file paths
         command <- sprintf("python ./fcs_converter.py --plate-layout %s --fcs-file %s --template-sheet %s --primer-index %s --output-file %s",

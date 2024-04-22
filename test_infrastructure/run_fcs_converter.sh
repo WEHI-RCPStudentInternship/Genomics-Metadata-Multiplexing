@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 # Define file paths
 PLATE_LAYOUT_PATH="./input_files/op1.plate_layout_to_spreadsheet/plate_spreadsheet_template.xlsx"

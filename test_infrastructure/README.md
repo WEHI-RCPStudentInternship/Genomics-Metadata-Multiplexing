@@ -43,10 +43,10 @@ md5sum op1.plate_layout_to_spreadsheet.tsv
 
 #### Expected output MD5 hash values
 ```
-a49ed88a4a0635e55d0bc51c9764436a  ./output_files/op1.plate_layout_to_spreadsheet.tsv
-3b5b34c726c17f1f7f1e0142b0602e03  ./output_files/op2.collate_fcs_files.tsv
-7856ab82a4e3de62a7c77d1eda224532  ./output_files/op3.merged_sample_sheet.tsv
-cb1a3ee77e56312db0d2452a17857dfe  ./output_files/op4.merged_primer_index.tsv
+758d88d529b2c4823d8479b200d85dca  op1.plate_layout_to_spreadsheet.tsv
+40f779583ade1d502ed03adba23fabbc  op2.collate_fcs_files.tsv
+9def5b6ed4277b786786b0066c342fa4  op3.merged_sample_sheet.tsv
+e44bd18d9e1ffc2a71cb806f498421b5  op4.merged_primer_index.tsv
 ```
 
 By following this guide, you can effectively test the operations within the Genomics Metadata Multiplexing application using mock data.

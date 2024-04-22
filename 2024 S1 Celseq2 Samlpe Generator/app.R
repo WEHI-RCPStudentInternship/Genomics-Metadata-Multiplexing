@@ -1,6 +1,9 @@
 library(shiny)
 library(reticulate)
 
+# clear environment dependencies
+rm(list=ls())
+
 # Ensure 'renv' is installed
 if (!requireNamespace("renv", quietly = TRUE)) {
     install.packages("renv")

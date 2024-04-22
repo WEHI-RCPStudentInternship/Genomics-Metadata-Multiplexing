@@ -25,25 +25,29 @@ def process_files(plate_layout_path, fcs_file, template_sheet_path, primer_index
     # Determine output format based on file extension
     output_format = output_file.split('.')[-1]
 
-    # Operation 1: Create Sample Sheet from Plate Layout
-    sample_sheet_df = plate_to_samplesheet(Path(plate_layout_path))
-    sample_sheet_output_path = 'temp/op1_plate_layout_to_spreadsheet.tsv'
-    sample_sheet_df.to_csv(sample_sheet_output_path, sep='\t', index=False)
-
-    # Operation 2: Combine FCS Files into One Document
-    collated_fcs_df = collate_fcs_files([Path(fcs_file)], "")
-    collated_fcs_output_path = 'temp/op2_collate_fcs_files.tsv'
-    collated_fcs_df.to_csv(collated_fcs_output_path, sep='\t', index=False)
-
-    # Operation 3: Merge All Data into Comprehensive File
-    merged_df = merge_data_with_samplesheet(spreadsheet_filepath=sample_sheet_output_path,
-                                            fcs_file=collated_fcs_output_path,
-                                            template_sheet_filepath=Path(template_sheet_path))
-
-    # Operation 4 (Optional): Add Primer Index to Comprehensive File
-    primer_index_df = pd.read_excel(primer_index_path, sheet_name='Sample primer & index', skiprows=3)
-    primer_index_df.rename({'Plate#': 'plate', 'Well position': 'well_position', 'Sample name': 'sample'}, axis=1, inplace=True)
-    merged_df = pd.merge(merged_df, primer_index_df, on=['plate', 'well_position', 'sample'], how='left', suffixes=('', '_primer'))
+    # operation 1: create sample sheet from plate layout template
+    sample_sheet_df = plate_to_samplesheet(plate_layout_file_path)
+    sample_sheet_df.to_csv('temp/op1.plate_layout_to_spreadsheet.tsv', sep='\t', index=False)
+    
+    # operation 2: combine fcs files into one tsv file
+    collated_fcs_df = collate_fcs_files([fcs_input_file_path], "")  # provide a list of fcs files
+    collated_fcs_df.to_csv('temp/op2.collate_fcs_files.tsv', sep='\t', index=False)
+    
+    # opeartion 3: merge all data into a comprehensive file
+    merged_samplesheet_fcs_and_template_sheet_df =  merge_data_with_samplesheet(spreadsheet_filepath=sample_sheet_file_path.as_posix(), 
+                                                                                fcs_file="temp/op2.collate_fcs_files.tsv", 
+                                                                                template_sheet_filepath=template_sheet_file_path)
+    
+    # operation 4 (option): add primer index to comprehensive file
+    primer_index_df = pd.read_excel(primer_index_file_path, sheet_name='Sample primer & index', skiprows=3)
+    
+    # generate mockup test result file
+    merged_primer_index_df = pd.merge(merged_samplesheet_fcs_and_template_sheet_df, primer_index_df, 
+                                      on=['Plate#', 'Well position', 'Sample name'], 
+                                      suffixes=('', '_primer'), how='left')
+    
+    merged_primer_index_df.to_csv('temp/final.tsv', sep='\t', index=False)
+    merged_primer_index_df.to_excel('temp/final.xlsx', index=False)
 
     # Output file processing
     if 'csv' in output_file or 'tsv' in output_format:

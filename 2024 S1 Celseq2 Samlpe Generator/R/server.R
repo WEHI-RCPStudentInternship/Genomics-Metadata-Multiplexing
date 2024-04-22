@@ -1,8 +1,7 @@
 library(shiny)
 library(DT) 
 
-source("R/components/homepage.R")
-source("R/handler.R")
+source("R/server.handler.R")
 
 # Server function
 server <- function(input, output, session) {

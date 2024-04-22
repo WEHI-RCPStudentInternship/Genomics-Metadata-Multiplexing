@@ -1,3 +1,5 @@
+source("R/ui.homepage.R")
+
 # Thumbnail image handler function
 thumbnail_image_handler <- function(input, output, session) {
     # Modal display functions for sample files

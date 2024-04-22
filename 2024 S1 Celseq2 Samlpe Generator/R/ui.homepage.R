@@ -41,15 +41,11 @@ homepage_info <- function() {
             )
         ),
         tags$div(
-            tags$li(
-                "For more project information, please visit the ",
-                a("Genomics Metadata Multiplexing GitHub", href = "https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing"),
-                "."
-            ),
-            tags$li(
-                "Project wiki: ",
-                a("WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki", href = "https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki")
-            )
+            p("For more project information, please visit the ",
+              a("Genomics Metadata Multiplexing GitHub", href = "https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing"),
+              "."),
+            p("Project wiki: ",
+              a("WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki", href = "https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki"))
         ),
         style = "padding: 20px;"
     )

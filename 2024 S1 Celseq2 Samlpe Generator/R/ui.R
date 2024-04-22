@@ -10,7 +10,7 @@ ui <- fluidPage(
                          tags$div(class = "navbar-header", 
                                   tags$div(class = "navbar-brand",
                                             style="display: flex; flex-direction: row; gap: 5px;",
-                                            tags$img(src = "assets/wehi.png", height = "30px"), 
+                                           tags$img(src = "assets/wehi.png", height = "30px"),
                                             tags$span("Genomics Metadata Multiplexing Celseq2 FCS Data Processor", style = "vertical-align: middle; margin-left: 10px;") 
                                   )
                          )

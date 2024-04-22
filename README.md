@@ -10,20 +10,17 @@ This markdown file contains the following content:
 3. [Naming Conventions For Files And Directories](#naming-conventions-for-files-and-directories)
 4. [Acknowledgements](#acknowledgements)
 
-> This codebase was developed by interns and open source contributors and serves as the **PRIMARY** repository for the GMM project. For the **SECONDARY** codebase, visit the [sister repository](https://github.com/WEHIGenomicsRnD/celseq-sample-sheet-generator) and it's corresponding [wiki page](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Sister-Repository).
-
 ## Repository Structure
+- [```gmm```](./gmm/): The 3rd and **CURRENT** version that takes Marek Cmero's Python/Flask web application ported into R Shiny
+- [```test```](./test/): Testing assets that verify the integrity of the [gmm](./gmm/) implementation
 - [```sample_data```](./sample_data/): Stores files such as FCS, Primer Index spreadsheets, templates, etc which are items needed for the merge process
 - [```markdown_assets```](./markdown_assets/): Stores the images used to make the markdown files within this repository, or the wiki pages that document the technicalities of the GMM project
-- [```fcslog```](./fcslog/): is name of the 2023 Semester 2 intake's implementation of the [web application](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Problem-Space#web-application) specified in the [Problem Space](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Problem-Space) wiki page
-- [```shiny_app```](./shiny_app/): is the 2023-2024 Summer intake's implementation of the web application specified in the Problem Space wiki page
-
-NOTE: As **fcslog** and **Shiny-app** are 2 separate implementations of would-be web applications, they should be treated as individual repositories. That is, build assets, .gitignore files, test data and outputs, etc... should be stored within their own respective directories.
+- [```past_implementations```](./past_implementations/): Discontinued web implementations developed by past interns
 
 ## Purpose Of Repository Markdown Files And Wiki Pages
 **Repository markdown files** should **ONLY** contain information related to the codebase. For example, if a directory stores contains a ```main.py``` Python file. The README.md file within said directory should explain what ```main.py``` does, and any useful commands such as the execution of said file.
 
-**Wiki Pages** on the other hand provide information **NOT** related to the codebase. Examples include the context behind the GMM project, design decisions behind software architecture, etc.
+**Wiki Pages** on the other hand, provides information **NOT** related to the codebase. Examples include the context behind the GMM project, design decisions behind software architecture, etc.
 
 ## Naming Conventions For Files And Directories
 - Use names that are meaningful and self-explanatory

@@ -163,11 +163,12 @@ data_display_handler <- function(input, output, session, processedData) {
         
         datatable(processedData(), extensions = 'Buttons', options = list(
             pageLength = 20,
+            lengthMenu = list(c(20, 50, 100, -1), c('20 rows', '50 rows', '100 rows', 'Show all')),
             autoWidth = TRUE,
             scrollX = TRUE,  # Enable horizontal scrolling
             scrollCollapse = TRUE,
-            dom = 'Bfrtip',
-            buttons = c('copy', 'csv', 'tsv', 'excel', 'pdf', 'colvis'),
+            dom = 'Blfrtip',
+            buttons = c('copy', 'csv', 'tsv', 'excel', 'colvis'),
             searchHighlight = TRUE,
             columnDefs = list(list(className = 'dt-center', targets = '_all')),  # Center align all columns
             initComplete = JS(

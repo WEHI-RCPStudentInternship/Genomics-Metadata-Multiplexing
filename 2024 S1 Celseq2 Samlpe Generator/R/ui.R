@@ -19,7 +19,7 @@ ui <- fluidPage(
     tags$head(
         tags$style(HTML("
             .dt-button {
-                background-color: #98FB98 !important;
+                background-color: #d3e0d7 !important;
                 color: black !important;
                 border-radius: 5px !important; 
                 border: none !important;
@@ -28,7 +28,7 @@ ui <- fluidPage(
             }
 
             .dt-button:hover {
-                box-shadow: 0 2px 4px 0 rgba(0,0,0,.2), 0 3px 10px 0 rgba(0,0,0,.19) !important; /* Slight shadow on hover */
+                box-shadow: 0 2px 4px 0 rgba(0,0,0,.2), 0 3px 10px 0 rgba(0,0,0,.19) !important; 
             }
         "))
     ),
@@ -42,7 +42,7 @@ ui <- fluidPage(
         actionButton("process", "Process Files", class = "btn-primary"),
         br(),br(),
         selectInput("format", "Select Download Format:", choices = c("CSV" = "csv", "TSV" = "tsv", "Excel" = "xlsx")),
-        downloadButton("downloadData", "Download", class = "btn-success")
+        downloadButton("downloadData", "Download Processed File", class = "btn-success")
     ),
     mainPanel(
         uiOutput("dynamicUI"),

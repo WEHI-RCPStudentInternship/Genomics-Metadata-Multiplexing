@@ -160,12 +160,24 @@ data_processing_handler <- function(input, output, session, uploadedFilePaths) {
 data_display_handler <- function(input, output, session, processedData) {
     output$dataOutput <- renderDT({
         req(processedData())  # Ensure there's data to display
-        datatable(processedData(), options = list(pageLength = 20, autoWidth = TRUE, 
-                                                  class = 'cell-border stripe', 
-                                                  dom = 'Bfrtip',
-                                                  buttons = c('copy', 'csv', 'excel', 'pdf', 'print', 'colvis'),
-                                                  searchHighlight = TRUE),
-                  filter = 'top')
+        
+        datatable(processedData(), extensions = 'Buttons', options = list(
+            pageLength = 20,
+            autoWidth = TRUE,
+            scrollX = TRUE,  # Enable horizontal scrolling
+            scrollCollapse = TRUE,
+            dom = 'Bfrtip',
+            buttons = c('copyHtml5', 'csvHtml5', 'excelHtml5', 'pdfHtml5', 'print', 'colvis'),
+            searchHighlight = TRUE,
+            columnDefs = list(list(className = 'dt-center', targets = '_all')),  # Center align all columns
+            initComplete = JS(
+                "function(settings, json) {",
+                "$(this.api().table().header()).css({'background-color': '#F0F0F0', 'color': '#000000'});",  # Light grey background and black text
+                "}"
+            )
+        ), filter = 'top', rownames = FALSE)
+        
+        
     })
 }
 

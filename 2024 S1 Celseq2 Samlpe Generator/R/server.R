@@ -15,6 +15,6 @@ server <- function(input, output, session) {
     
     data_display_handler(input, output, session, processedData)
     
-    data_download_handler(input, output, session, processedData)
+    # data_download_handler(input, output, session, processedData)
 }
 

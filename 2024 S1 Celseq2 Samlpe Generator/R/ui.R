@@ -24,9 +24,9 @@ ui <- fluidPage(
         fileInput('template_sheet', 'Choose Template Sheet File:', multiple = FALSE, accept = c('.xlsx')),
         fileInput('primer_index', 'Choose Primer Index File:', multiple = FALSE, accept = c('.xlsx')),
         actionButton("process", "Process Files", class = "btn-primary"),
-        br(),br(),
-        selectInput("format", "Select Download Format:", choices = c("CSV" = "csv", "TSV" = "tsv", "Excel" = "xlsx")),
-        downloadButton("downloadData", "Download", class = "btn-success")
+        # br(),br(),
+        # selectInput("format", "Select Download Format:", choices = c("CSV" = "csv", "TSV" = "tsv", "Excel" = "xlsx")),
+        # downloadButton("downloadData", "Download", class = "btn-success")
     ),
     mainPanel(
         uiOutput("dynamicUI"),

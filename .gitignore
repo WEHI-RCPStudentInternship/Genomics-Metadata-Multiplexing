@@ -152,4 +152,8 @@ gmm/.Rhistory
 gmm/.RData
 
 
-/test/temp
+temp
+temp/
+.Rprofile
+.RData
+.Rhistory

@@ -129,7 +129,7 @@ data_processing_handler <- function(input, output, session, uploadedFilePaths) {
         fcs_files_argument <- paste(uploadedFilePaths$fcs_files, collapse = " ")
         outputFilePath <- tempfile(fileext = ".csv", tmpdir = "temp/data")
         # Construct the command to call the external Python script with the updated file paths
-        command <- sprintf("python ./fcs_converter.py --plate-layout %s --fcs-files %s --template-sheet %s --primer-index %s --output-file %s",
+        command <- sprintf("python scripts/fcs_converter.py --plate-layout %s --fcs-files %s --template-sheet %s --primer-index %s --output-file %s",
                            shQuote(uploadedFilePaths$plate_layout), 
                            shQuote(fcs_files_argument), 
                            shQuote(uploadedFilePaths$template_sheet), 

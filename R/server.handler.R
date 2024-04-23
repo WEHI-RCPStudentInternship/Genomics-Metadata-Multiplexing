@@ -1,3 +1,7 @@
+library(shiny)
+library(shinyjs)
+library(shinyalert)
+
 source("R/ui.homepage.R")
 
 # Thumbnail image handler function
@@ -120,6 +124,9 @@ data_processing_handler <- function(input, output, session, uploadedFilePaths) {
         
         cat("Process button clicked, starting data processing...\n")
         
+        # Show processing hint
+        shinyjs::show("spinner")
+        
         # Assuming uploadedFilePaths$fcs_files is a list of file paths
         # Join multiple FCS file paths into a single string if necessary
         fcs_files_argument <- paste(uploadedFilePaths$fcs_files, collapse = " ")
@@ -139,14 +146,23 @@ data_processing_handler <- function(input, output, session, uploadedFilePaths) {
         # Now, check if the processed data file was successfully created by the command
         if (file.exists(outputFilePath)) {
             processedData(read.csv(outputFilePath, stringsAsFactors = FALSE))
+            # Hide processing hint
+            shinyjs::hide("spinner")
+            # Display completion popup
+            shinyalert::shinyalert("Success", "Data processing completed successfully!", type = "success")
         } else {
             # If the file doesn't exist, log an error message
             print(paste("Something Wrong with the application, please try again."))
+            # Hide processing hint
+            shinyjs::hide("spinner")
+            # Display error popup
+            shinyalert::shinyalert("Error", "Something went wrong with the data processing.", type = "error")
         }
     })
     
     return(processedData)
 }
+
 
 
 

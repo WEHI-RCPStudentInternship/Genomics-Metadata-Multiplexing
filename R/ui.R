@@ -75,6 +75,13 @@ ui <- fluidPage(
         background-color: #0056b3;
         border-color: #0056b3;
       }
+      
+      .spinner-border {
+        width: 3rem;
+        height: 3rem;
+        margin: auto;
+        display: block;
+       }
     ")),
         tags$script(HTML("
       $(document).on('change', '.folder-input', function(e) {
@@ -124,7 +131,11 @@ ui <- fluidPage(
 
         tags$label("Step 2: Processing Files"),
         br(),br(),
+    
+        div(id = "spinner", class = "spinner-border", role = "status", style="display: none;"), 
         actionButton("process", "Process Files", class = "btn-primary", style="{width: 200px;}"),
+        textOutput("result"),
+        
         br(),br(),
         selectInput("format", "Select Download Format:", choices = c("CSV" = "csv", "TSV" = "tsv", "Excel" = "xlsx")),
         downloadButton("downloadData", "Download Processed File", class = "btn-success")

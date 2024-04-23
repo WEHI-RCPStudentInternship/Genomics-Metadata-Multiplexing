@@ -51,72 +51,89 @@ data_download_handler <- function(input, output, session, processedData) {
     )
 }
 
-# Data upload handler function
 data_upload_handler <- function(input, output, session) {
     # Ensure the "temp/data" directory exists
     if (!dir.exists("temp/data")) {
         dir.create("temp/data", recursive = TRUE)
     }
     
-    # Reactive values to store uploaded file paths
+    # Initialize reactive values to store uploaded file paths
     uploadedFilePaths <- reactiveValues(
-        plate_layout = NULL,
-        fcs_file = NULL,
-        template_sheet = NULL,
+        plate_layout = "",
+        fcs_files = list(),
+        template_sheet = "",
         primer_index = ""
     )
     
-    observe({
-        # Update reactive values with uploaded file paths
+    # Handle Plate Layout File Upload
+    observeEvent(input$plate_layout, {
         if (!is.null(input$plate_layout)) {
             destPath <- paste0("temp/data/", input$plate_layout$name)
             file.copy(input$plate_layout$datapath, destPath)
             uploadedFilePaths$plate_layout <- destPath
         }
+    }, ignoreNULL = TRUE)
+    
+    # Handle Multiple FCS Files Upload
+    observeEvent(input$fcs_file, {
         if (!is.null(input$fcs_file)) {
-            destPath <- paste0("temp/data/", input$fcs_file$name)
-            file.copy(input$fcs_file$datapath, destPath)
-            uploadedFilePaths$fcs_file <- destPath
+            # Initialize an empty list for storing paths of uploaded FCS files
+            fcs_files_paths <- list()
+            
+            for (i in 1:nrow(input$fcs_file)) {
+                destPath <- paste0("temp/data/", input$fcs_file$name[i])
+                file.copy(input$fcs_file$datapath[i], destPath)
+                fcs_files_paths <- c(fcs_files_paths, destPath)
+            }
+            
+            # Update the reactive value with the new list of FCS file paths
+            uploadedFilePaths$fcs_files <- fcs_files_paths
         }
+    }, ignoreNULL = TRUE)
+    
+    # Handle Template Sheet Upload
+    observeEvent(input$template_sheet, {
         if (!is.null(input$template_sheet)) {
             destPath <- paste0("temp/data/", input$template_sheet$name)
             file.copy(input$template_sheet$datapath, destPath)
             uploadedFilePaths$template_sheet <- destPath
         }
+    }, ignoreNULL = TRUE)
+    
+    # Handle Primer Index File Upload
+    observeEvent(input$primer_index, {
         if (!is.null(input$primer_index)) {
             destPath <- paste0("temp/data/", input$primer_index$name)
             file.copy(input$primer_index$datapath, destPath)
             uploadedFilePaths$primer_index <- destPath
         }
-    })
+    }, ignoreNULL = TRUE)
+    
     return(uploadedFilePaths)
 }
+
+
 
 data_processing_handler <- function(input, output, session, uploadedFilePaths) {
     processedData <- reactiveVal(NULL)  # To store the result of processing
     
+    # Listen for the 'process' button click
     observeEvent(input$process, {
         # Ensure all required files are uploaded
-        req(uploadedFilePaths$plate_layout, uploadedFilePaths$fcs_file, uploadedFilePaths$template_sheet)
+        req(uploadedFilePaths$plate_layout, uploadedFilePaths$fcs_files, uploadedFilePaths$template_sheet)
         
-        #filepathTable <- table(
-        #    plate=uploadedFilePaths$plate_layout,
-        #    fcs=uploadedFilePaths$fcs_file,
-        #    template=uploadedFilePaths$template_sheet,
-        #    primer=uploadedFilePaths$primer_index,
-        #)
+        cat("Process button clicked, starting data processing...\n")
         
-        # print(filepathTable)
-        
-        # Temporary file for processed data output, stored in the "temp/data" directory
+        # Assuming uploadedFilePaths$fcs_files is a list of file paths
+        # Join multiple FCS file paths into a single string if necessary
+        fcs_files_argument <- paste(uploadedFilePaths$fcs_files, collapse = " ")
         outputFilePath <- tempfile(fileext = ".csv", tmpdir = "temp/data")
-        
-        print(uploadedFilePaths)
-        
         # Construct the command to call the external Python script with the updated file paths
-        command <- sprintf("python ./fcs_converter.py --plate-layout %s --fcs-file %s --template-sheet %s --primer-index %s --output-file %s",
-                           shQuote(uploadedFilePaths$plate_layout), shQuote(uploadedFilePaths$fcs_file), 
-                           shQuote(uploadedFilePaths$template_sheet), shQuote(uploadedFilePaths$primer_index), 
+        command <- sprintf("python ./fcs_converter.py --plate-layout %s --fcs-files %s --template-sheet %s --primer-index %s --output-file %s",
+                           shQuote(uploadedFilePaths$plate_layout), 
+                           shQuote(fcs_files_argument), 
+                           shQuote(uploadedFilePaths$template_sheet), 
+                           shQuote(uploadedFilePaths$primer_index), 
                            shQuote(outputFilePath))
         
         # Execute the command and capture output
@@ -128,12 +145,14 @@ data_processing_handler <- function(input, output, session, uploadedFilePaths) {
             processedData(read.csv(outputFilePath, stringsAsFactors = FALSE))
         } else {
             # If the file doesn't exist, log an error message
-            print(paste("File not found after processing:", outputFilePath))
+            print(paste("Something Wrong with the application, please try again."))
         }
     })
     
     return(processedData)
 }
+
+
 
 
 
@@ -152,13 +171,24 @@ data_display_handler <- function(input, output, session, processedData) {
 
 ui_display_handler <- function(input, output, session, processedData) {
     output$dynamicUI <- renderUI({
-        # Check if processedData is NULL or has no rows
-        if (is.null(processedData()) || nrow(processedData()) == 0) {
+        # First, check if processedData is NULL
+        if (is.null(processedData())) {
             homepage_info()
         } else {
-            # Data is available, display the DataTable
-            tags$div(style = "overflow-y: scroll; width: 100%;",
-                     DT::dataTableOutput("dataOutput"))
+            # If processedData is not NULL, check if it's a dataframe with rows
+            if (is.data.frame(processedData()) && nrow(processedData()) > 0) {
+                # Data is available and is a non-empty dataframe, display the DataTable
+                tags$div(style = "overflow-y: scroll; width: 100%;",
+                         DT::dataTableOutput("dataOutput"))
+            } else if(is.list(processedData()) && length(processedData()) > 0) {
+                # If processedData is a list and not empty, handle accordingly
+                # This part is optional and should be adapted based on your data structure
+                # For example, you might want to display a message or handle list data differently
+                tags$div("Data is available but not in dataframe format.")
+            } else {
+                # If processedData is not NULL but also not a non-empty dataframe or list
+                homepage_info()
+            }
         }
     })
 }

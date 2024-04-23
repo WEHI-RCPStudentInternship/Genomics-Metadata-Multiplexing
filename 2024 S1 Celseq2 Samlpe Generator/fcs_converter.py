@@ -11,7 +11,7 @@ def create_temp_folder():
     temp_file_path.mkdir(parents=True, exist_ok=True)
     return temp_file_path
 
-def process_files(plate_layout_path, fcs_file, template_sheet_path, primer_index_path, output_file):
+def process_files(plate_layout_path, fcs_files, template_sheet_path, primer_index_path, output_file):
     """
     Process files according to the GMM testing operations.
 
@@ -31,9 +31,11 @@ def process_files(plate_layout_path, fcs_file, template_sheet_path, primer_index
     sample_sheet_df.to_csv(sample_sheet_output_path, sep='\t', index=False)
 
     # Operation 2: Combine FCS Files into One Document
-    collated_fcs_df = collate_fcs_files([Path(fcs_file)], "")
+    collated_fcs_df = collate_fcs_files(fcs_files.split(' '), "")
     collated_fcs_output_path = 'temp/op2_collate_fcs_files.tsv'
     collated_fcs_df.to_csv(collated_fcs_output_path, sep='\t', index=False)
+    
+    print(collated_fcs_df)
 
     # Operation 3: Merge All Data into Comprehensive File
     merged_df = merge_data_with_samplesheet(spreadsheet_filepath=sample_sheet_output_path,
@@ -49,7 +51,7 @@ def process_files(plate_layout_path, fcs_file, template_sheet_path, primer_index
     # Output file processing
     if 'csv' in output_file or 'tsv' in output_format:
         sep = ',' if 'csv' in output_file else '\t'
-        print(sep)
+        # print(sep)
         merged_df.to_csv(output_file, sep=sep, index=False)
     elif 'xlsx' in output_format:
         merged_df.to_excel(output_file, index=False)
@@ -58,7 +60,7 @@ def main():
     """Main function to parse arguments and call processing functions."""
     parser = argparse.ArgumentParser(description='Process GMM testing files.')
     parser.add_argument('-pl', '--plate-layout', required=True, help='Path to plate layout file')
-    parser.add_argument('-fcs', '--fcs-file', required=True, help='Path to FCS file')
+    parser.add_argument('-fcs', '--fcs-files', required=True, help='Path to FCS file')
     parser.add_argument('-ts', '--template-sheet', required=True, help='Path to template sheet file')
     parser.add_argument('-pi', '--primer-index', required=False, help='Path to primer index file')
     parser.add_argument('-o', '--output-file', required=True, help='Full path and file name for the output, including extension (.csv, .tsv, .xlsx)')
@@ -67,7 +69,7 @@ def main():
     create_temp_folder()
 
     process_files(plate_layout_path=args.plate_layout, 
-                  fcs_file=args.fcs_file, 
+                  fcs_files=args.fcs_files, 
                   template_sheet_path=args.template_sheet, 
                   primer_index_path=args.primer_index, 
                   output_file=args.output_file)

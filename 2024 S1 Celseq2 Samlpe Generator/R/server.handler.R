@@ -170,13 +170,21 @@ data_display_handler <- function(input, output, session, processedData) {
             dom = 'Blfrtip',
             buttons = c('copy', 'csv', 'tsv', 'excel', 'colvis'),
             searchHighlight = TRUE,
-            columnDefs = list(list(className = 'dt-center', targets = '_all')),  # Center align all columns
+            columnDefs = list(
+                list(className = 'dt-center', targets = '_all', width = '200px'), 
+                list(targets = '_all', createdCell = JS(
+                    "function(td, cellData, rowData, row, col) {",
+                    "$(td).css({'min-width': '200px'});",  # Ensure minimum width of 200px for each cell
+                    "}"
+                ))
+            ),
             initComplete = JS(
                 "function(settings, json) {",
                 "$(this.api().table().header()).css({'background-color': '#F0F0F0', 'color': '#000000'});", 
                 "}"
             )
-        ), filter = 'top', rownames = FALSE)
+        ), filter = 'top', rownames = TRUE)
+        
         
         
     })

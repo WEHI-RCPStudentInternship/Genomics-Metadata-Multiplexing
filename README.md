@@ -1,6 +1,6 @@
 <!-- Author: Sunchuangyu Huang huang.su@wehi.edu.au -->
 
-<img width="1822" alt="image" src="https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/62606765/645a3972-fd07-41a1-a5a4-d9c101134509">
+<img width="1822" alt="image" src="https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/62606765/a4a42545-633d-4c1f-aa1d-d63c2667fd5f">
 
 # How to Run the Shiny R Celseq2 FCS Operation Dashboard (MacOS/Linux)
 

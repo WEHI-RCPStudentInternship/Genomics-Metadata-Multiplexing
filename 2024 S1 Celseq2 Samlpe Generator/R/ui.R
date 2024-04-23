@@ -16,6 +16,22 @@ ui <- fluidPage(
                          )
                 )
     ),
+    tags$head(
+        tags$style(HTML("
+            .dt-button {
+                background-color: #98FB98 !important;
+                color: black !important;
+                border-radius: 5px !important; 
+                border: none !important;
+                padding: 5px 10px !important;
+                margin-right: 5px !important;
+            }
+
+            .dt-button:hover {
+                box-shadow: 0 2px 4px 0 rgba(0,0,0,.2), 0 3px 10px 0 rgba(0,0,0,.19) !important; /* Slight shadow on hover */
+            }
+        "))
+    ),
     sidebarPanel(
         class = "sidebar", 
         h4("Data Prepraration"), 

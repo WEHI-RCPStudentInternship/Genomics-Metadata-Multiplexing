@@ -7,7 +7,9 @@ source("R/server.handler.R")
 server <- function(input, output, session) {
     thumbnail_image_handler(input, output, session)
     
+    folder_upload_progress_bar(input, output, session)
     uploadedFilePaths <- data_upload_handler(input, output, session)
+    print(uploadedFilePaths)
     
     processedData <- data_processing_handler(input, output, session, uploadedFilePaths)
     

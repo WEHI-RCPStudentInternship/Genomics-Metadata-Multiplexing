@@ -57,60 +57,56 @@ data_upload_handler <- function(input, output, session) {
         dir.create("temp/data", recursive = TRUE)
     }
     
-    # Initialize reactive values to store uploaded file paths
+    # Initialize reactive values to store uploaded file paths and names
     uploadedFilePaths <- reactiveValues(
-        plate_layout = "",
+        plate_layout = list(path = "", name = ""),
         fcs_files = list(),
-        template_sheet = "",
-        primer_index = ""
+        template_sheet = list(path = "", name = ""),
+        primer_index = list(path = "", name = "")
     )
     
-    # Handle Plate Layout File Upload
-    observeEvent(input$plate_layout, {
-        if (!is.null(input$plate_layout)) {
-            destPath <- paste0("temp/data/", input$plate_layout$name)
-            file.copy(input$plate_layout$datapath, destPath)
-            uploadedFilePaths$plate_layout <- destPath
-        }
-    }, ignoreNULL = TRUE)
-    
-    # Handle Multiple FCS Files Upload
-    observeEvent(input$fcs_file, {
-        if (!is.null(input$fcs_file)) {
-            # Initialize an empty list for storing paths of uploaded FCS files
-            fcs_files_paths <- list()
+    # Handle Folder Upload
+    observeEvent(input$folder_input, {
+        if (!is.null(input$folder_input)) {
+            # Reset or initialize lists for each file type
+            fcs_files_info <- list()
             
-            for (i in 1:nrow(input$fcs_file)) {
-                destPath <- paste0("temp/data/", input$fcs_file$name[i])
-                file.copy(input$fcs_file$datapath[i], destPath)
-                fcs_files_paths <- c(fcs_files_paths, destPath)
+            # Iterate over each file in the uploaded folder
+            for (i in 1:nrow(input$folder_input)) {
+                destPath <- paste0("temp/data/", input$folder_input$name[i])
+                file.copy(input$folder_input$datapath[i], destPath)
+                
+                # Categorize and store file info based on naming convention or extension
+                if (grepl("plate_spreadsheet", input$folder_input$name[i], ignore.case = TRUE)) {
+                    uploadedFilePaths$plate_layout <- list(path = destPath, name = input$folder_input$name[i])
+                    cat(sprintf("Plate layout uploaded: %s\n", destPath))
+                } else if (grepl("\\.fcs$", input$folder_input$name[i], ignore.case = TRUE)) {
+                    # Store the FCS file name first
+                    fcs_file_name <- paste0("temp/data/", input$folder_input$name[i])
+                    
+                    # Append the modified information with path and name to the fcs_files_info list
+                    fcs_files_info <- c(fcs_files_info, fcs_file_name)
+                }
+                else if (grepl("template_sheet", input$folder_input$name[i], ignore.case = TRUE)) {
+                    uploadedFilePaths$template_sheet <- list(path = destPath, name = input$folder_input$name[i])
+                    cat(sprintf("Template sheet uploaded: %s\n", destPath))
+                } else if (grepl("primer_index", input$folder_input$name[i], ignore.case = TRUE)) {
+                    uploadedFilePaths$primer_index <- list(path = destPath, name = input$folder_input$name[i])
+                    cat(sprintf("Primer index file uploaded: %s\n", destPath))
+                } else {
+                    cat(sprintf("Unrecognized file uploaded: %s\n", destPath))
+                }
             }
             
-            # Update the reactive value with the new list of FCS file paths
-            uploadedFilePaths$fcs_files <- fcs_files_paths
-        }
-    }, ignoreNULL = TRUE)
-    
-    # Handle Template Sheet Upload
-    observeEvent(input$template_sheet, {
-        if (!is.null(input$template_sheet)) {
-            destPath <- paste0("temp/data/", input$template_sheet$name)
-            file.copy(input$template_sheet$datapath, destPath)
-            uploadedFilePaths$template_sheet <- destPath
-        }
-    }, ignoreNULL = TRUE)
-    
-    # Handle Primer Index File Upload
-    observeEvent(input$primer_index, {
-        if (!is.null(input$primer_index)) {
-            destPath <- paste0("temp/data/", input$primer_index$name)
-            file.copy(input$primer_index$datapath, destPath)
-            uploadedFilePaths$primer_index <- destPath
+            # Update the fcs_files list in uploadedFilePaths after iterating through all files
+            uploadedFilePaths$fcs_files <- fcs_files_info
         }
     }, ignoreNULL = TRUE)
     
     return(uploadedFilePaths)
 }
+
+
 
 
 
@@ -211,5 +207,35 @@ ui_display_handler <- function(input, output, session, processedData) {
                 homepage_info()
             }
         }
+    })
+}
+
+folder_upload_progress_bar <- function(input, output, session) {
+    # Placeholder for progress bar UI
+    output$upload_progress <- renderUI({
+        NULL  # Initially, there's no progress bar
+    })
+    
+    observeEvent(input$folder_input, {
+        req(input$folder_input)  # Ensure there's an input
+        
+        # Initialize the progress bar
+        withProgress(message = 'Uploading files...', value = 0, {
+            for (i in 1:length(input$folder_input$name)) {
+                # Simulate file processing
+                Sys.sleep(0.1)  # Replace this with actual file processing
+                
+                # Update the progress bar
+                incProgress(1/length(input$folder_input$name), detail = paste("Processing", input$folder_input$name[i]))
+            }
+        })
+        
+        # After processing is complete, show a modal dialog to inform the user
+        showModal(modalDialog(
+            title = "Upload Complete",
+            "All files have been processed. You can now proceed to the next step.",
+            easyClose = TRUE,
+            footer = modalButton("Close")
+        ))
     })
 }

@@ -195,7 +195,7 @@ data_display_handler <- function(input, output, session, processedData) {
                 "$(this.api().table().header()).css({'background-color': '#F0F0F0', 'color': '#000000'});", 
                 "}"
             )
-        ), filter = 'top', rownames = TRUE)
+        ), filter = 'top', rownames = FALSE)
         
         
         

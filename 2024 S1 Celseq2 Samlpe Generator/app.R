@@ -1,3 +1,4 @@
+#!/bin/r
 library(shiny)
 library(reticulate)
 

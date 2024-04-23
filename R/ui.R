@@ -137,6 +137,7 @@ ui <- fluidPage(
         textOutput("result"),
         
         br(),br(),
+        tags$label("Step 3: Download Processed File"),
         selectInput("format", "Select Download Format:", choices = c("CSV" = "csv", "TSV" = "tsv", "Excel" = "xlsx")),
         downloadButton("downloadData", "Download Processed File", class = "btn-success")
     ),

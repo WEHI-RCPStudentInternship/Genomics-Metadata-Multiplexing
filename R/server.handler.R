@@ -177,22 +177,26 @@ data_display_handler <- function(input, output, session, processedData) {
             pageLength = 20,
             lengthMenu = list(c(20, 50, 100, -1), c('20 rows', '50 rows', '100 rows', 'Show all')),
             autoWidth = TRUE,
-            scrollX = TRUE,  # Enable horizontal scrolling
+            scrollX = TRUE,
             scrollCollapse = TRUE,
             dom = 'Blfrtip',
-            buttons = c('copy', 'csv', 'tsv', 'excel', 'colvis'),
+            buttons = c('copy', 
+                        'csv', 
+                        'excel', 
+                        'colvis'
+                        ),
             searchHighlight = TRUE,
             columnDefs = list(
-                list(className = 'dt-center', targets = '_all', width = '200px'), 
+                list(className = 'dt-center', targets = '_all', width = '200px'),
                 list(targets = '_all', createdCell = JS(
                     "function(td, cellData, rowData, row, col) {",
-                    "$(td).css({'min-width': '200px'});",  # Ensure minimum width of 200px for each cell
+                    "$(td).css({'min-width': '200px'});",
                     "}"
                 ))
             ),
             initComplete = JS(
                 "function(settings, json) {",
-                "$(this.api().table().header()).css({'background-color': '#F0F0F0', 'color': '#000000'});", 
+                "$(this.api().table().header()).css({'background-color': '#F0F0F0', 'color': '#000000'});",
                 "}"
             )
         ), filter = 'top', rownames = FALSE)

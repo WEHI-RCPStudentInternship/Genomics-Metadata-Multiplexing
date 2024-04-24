@@ -8,6 +8,9 @@ This guide provides detailed instructions for setting up and running the "Celseq
 
 **Note:** For Windows users, manual configuration of Python virtual environments and R dependencies is required due to package conflicts. Unfortunately, we do not have an automated solution for Windows at this time.
 
+[![Running the GMM Dashboard: A Step-by-Step Guide for MacOS/Linux Users](http://img.youtube.com/vi/zbZt63h1bYc/0.jpg)](http://www.youtube.com/watch?v=zbZt63h1bYc "Running the GMM Dashboard: A Step-by-Step Guide for MacOS/Linux Users")
+
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed on your system:

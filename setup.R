@@ -31,7 +31,7 @@ setup_renv <- function() {
     # Restore the project dependencies from renv.lock without confirmation prompts
     renv::restore(confirm = FALSE)
     
-    install.packages(c("shiny", "shinyjs", "shinythemes", "DT", "reticulate"))
+    install.packages(c("shiny", "shinyjs", "shinythemes", "DT", "reticulate", "shinycssloaders"))
 }
 
 # Execute the setup functions

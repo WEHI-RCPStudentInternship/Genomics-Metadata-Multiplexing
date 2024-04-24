@@ -4,92 +4,59 @@
 
 # How to Run the Shiny R Celseq2 FCS Operation Dashboard (MacOS/Linux)
 
-This guide provides step-by-step instructions on how to set up and run the Shiny R application for the Genomics Metadata Multiplexing project, specifically the "2024 S1 Celseq2 Sample Generator" module. This application is designed to facilitate the processing and analysis of genomics metadata, providing an interactive user interface for various operations.
+This guide provides detailed instructions for setting up and running the "Celseq2 Sample Generator" dashboard of the Genomics Metadata Multiplexing project. This Shiny R application is designed to assist in the processing and analysis of genomics metadata through an interactive interface.
 
-For Windows, you need to build a new python virtualenv with Python3.9 and install all R dependencies manually. This caused by program achitecture and unfortunately we don't have a better solution unless use program container.
+**Note:** For Windows users, manual configuration of Python virtual environments and R dependencies is required due to package conflicts. Unfortunately, we do not have an automated solution for Windows at this time.
 
 ## Prerequisites
 
-Before running the application, ensure you have the following installed:
+Before you begin, ensure you have the following installed on your system:
 
-- **R**: The latest version of R is recommended. You can download it from [CRAN](https://cran.r-project.org/).
-- **RStudio**: While not strictly necessary, RStudio provides a convenient and user-friendly environment for running R scripts and applications. Download it from [RStudio's website](https://www.rstudio.com/products/rstudio/download/).
+- **R**: Install the latest version from [CRAN](https://cran.r-project.org/).
+- **RStudio**: Recommended for a user-friendly experience. Download from [RStudio's website](https://www.rstudio.com/products/rstudio/download/).
 
-## Initial Setup
+## Installation Guide
 
-1. **Clone the GitHub Repository**: First, clone the repository containing the Shiny application to your local machine. 
-2. **Navigate to the Project Directory**: Change your working directory to the "2024 S1 Celseq2 Sample Generator" within the cloned repository:
-3. **Install R and RStudio**: If not already installed, download and install R and RStudio from their respective websites.
+### Step 1: Download the Repository
 
-## Project Dependencies
+Download the latest version of the Genomics Metadata Multiplexing project repository to your local machine. You can do this by visiting the [GitHub repository page](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing) and downloading the repository as a ZIP file, or by using the following git command in your terminal:
 
-This project uses the `renv` package for dependency management to ensure reproducibility.
+```bash
+git clone https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing.git
+```
 
-1. **Open the Project in RStudio**: Open RStudio, and then open the project by navigating to `File > Open Project`, selecting the `.Rproj` file within the "2024 S1 Celseq2 Sample Generator" directory.
+### Step 2: Set the Working Directory
 
-2. **Run `app.R` use `runApp()` command** 
+Open RStudio, and set the working directory to the project folder you just downloaded. You can do this by executing the following command in the R console, replacing path_to_folder with the actual path to the project folder:
+
+```R
+setwd("path_to_folder/Genomics-Metadata-Multiplexing")
+```
+
+### Step 3: Run the Setup Script
+
+In RStudio, open the setup.R file located in the project directory. This script is responsible for configuring the virtual environment and installing necessary dependencies. Run the script by clicking the 'Source' button in the top right corner of the script editor or by executing the following command in the R console:
+
+```R
+source("setup.R")
+```
+
+### Step 4: Launch the Application
+
+After the setup script completes, open the app.R file in RStudio. Launch the application by clicking the 'Run App' button in the top right corner of the script editor, or by executing the following command in the R console:
 
 ```R
 shiny::runApp()
 ```
 
-For first time running, you may need to install the required packages. You will see the following prompt:
+The application will open in a new browser window, and you're ready to use the "Celseq2 Sample Generator Dashboard" module.
 
-<img width="901" alt="image" src="https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/62606765/9f56f354-bbb1-4893-a830-fc8b5ad1fbf7">
+## Troubleshooting
 
-Please select number **2** and continue, then the application will ask you install all dependencies, please select **Yes/Y**.
+If you encounter any issues during the setup process, please ensure that you have the latest versions of R and RStudio installed.
+For permission-related errors, try running RStudio as an administrator or using sudo on Linux/MacOS.
 
-<img width="967" alt="image" src="https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/62606765/2bcaa76e-d67b-4463-9a33-aed237ecff26">
+Windows users may need to manually configure virtual environments and R dependencies due to potential package conflicts.
+Acknowledgements
 
-All the required packages will be installed automatically and the application will be launched in your default web browser at http://127.0.0.1:4341.
-=======
-# Genomics-Metadata-Multiplexing
-
-Welcome to the  Genomics-Metadata-Multiplexing (GMM) [repository](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing).
-
-For extensive documentation regarding the GMM project's overview, goal of the web application and future, please consult the GMM [wiki pages](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki).
-
-This markdown file contains the following content:
-1. [Repository Structure](#repository-structure)
-2. [Purpose Of Repository Markdown Files And Wiki Pages](#purpose-of-repository-markdown-files-and-wiki-pages)
-3. [Naming Conventions For Files And Directories](#naming-conventions-for-files-and-directories)
-4. [Acknowledgements](#acknowledgements)
-
-## Repository Structure
-- [```gmm```](./gmm/): The 3rd and **CURRENT** version that takes Marek Cmero's Python/Flask web application ported into R Shiny
-- [```test```](./test/): Testing assets that verify the integrity of the [gmm](./gmm/) implementation
-- [```sample_data```](./sample_data/): Stores files such as FCS, Primer Index spreadsheets, templates, etc which are items needed for the merge process
-- [```markdown_assets```](./markdown_assets/): Stores the images used to make the markdown files within this repository, or the wiki pages that document the technicalities of the GMM project
-- [```past_implementations```](./past_implementations/): Discontinued web implementations developed by past interns
-
-## Purpose Of Repository Markdown Files And Wiki Pages
-**Repository markdown files** should **ONLY** contain information related to the codebase. For example, if a directory stores contains a ```main.py``` Python file. The README.md file within said directory should explain what ```main.py``` does, and any useful commands such as the execution of said file.
-
-**Wiki Pages** on the other hand, provides information **NOT** related to the codebase. Examples include the context behind the GMM project, design decisions behind software architecture, etc.
-
-## Naming Conventions For Files And Directories
-- Use names that are meaningful and self-explanatory
-- When creating new files or directories, lowercase alphanumeric characters should be used
-- Special and Whitespace characters, should NEVER be used
-- Use [snake_case](https://developer.mozilla.org/en-US/docs/Glossary/Snake_case) for filenames and directories as this codebase uses Python to import files/modules
-- The filetype extension for a file should ALWAYS be included at the end
-<table>
-    <tr>
-        <th>&nbsp</th>
-        <th>Good:</th>
-        <th>Bad:</th>
-    </tr>
-    <tr>
-        <th>Directory:</th>
-        <td>shiny_app</td>
-        <td>Sh1ny-App</td>
-    </tr>
-    <tr>
-        <th>File:</th>
-        <td>cel_seq2_steps.png</td>
-        <td>Cel Seq2 Steps</td> 
-    </tr>
-</table>
-
-## Acknowledgements
-We would like to acknowledge all the current and past supervisors, subject matter experts, interns and open source contributors that took part in the WEHI GMM project. A list of their names, GitHub usernames, and emails can be found in the [Contributors](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki/Contributors) wiki page.
+We extend our gratitude to all contributors to the Genomics Metadata Multiplexing project. For a complete list of contributors, please visit the Contributors wiki page.

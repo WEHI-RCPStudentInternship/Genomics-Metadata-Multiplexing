@@ -2,7 +2,7 @@
 
 <img width="1822" alt="image" src="https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/assets/62606765/a4a42545-633d-4c1f-aa1d-d63c2667fd5f">
 
-# How to Run the Shiny R Celseq2 FCS Operation Dashboard (MacOS/Linux)
+## How to Run the Shiny R Celseq2 FCS Operation Dashboard (MacOS/Linux)
 
 This guide provides detailed instructions for setting up and running the "Celseq2 Sample Generator" dashboard of the Genomics Metadata Multiplexing project. This Shiny R application is designed to assist in the processing and analysis of genomics metadata through an interactive interface.
 
@@ -10,56 +10,45 @@ This guide provides detailed instructions for setting up and running the "Celseq
 
 [![Running the GMM Dashboard: A Step-by-Step Guide for MacOS/Linux Users](http://img.youtube.com/vi/zbZt63h1bYc/0.jpg)](http://www.youtube.com/watch?v=zbZt63h1bYc "Running the GMM Dashboard: A Step-by-Step Guide for MacOS/Linux Users")
 
-
 ## Prerequisites
 
-Before you begin, ensure you have the following installed on your system:
+Before proceeding, ensure you have the following prerequisites installed on your system:
 
-- **R**: Install the latest version from [CRAN](https://cran.r-project.org/).
-- **RStudio**: Recommended for a user-friendly experience. Download from [RStudio's website](https://www.rstudio.com/products/rstudio/download/).
+- **Git**: For cloning the repository.
+- **R**: The application is built in R, so ensure you have R installed.
+- **RStudio** (Optional): For a more user-friendly experience running the app locally.
 
-## Installation Guide
+To run the application locally, you can use RStudio or the R console. Here are the steps for both methods:
 
-### Step 1: Download the Repository
+### Using RStudio
 
-Download the latest version of the Genomics Metadata Multiplexing project repository to your local machine. You can do this by visiting the [GitHub repository page](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing) and downloading the repository as a ZIP file, or by using the following git command in your terminal:
+1. **Open RStudio**: Start RStudio on your local machine.
+2. **Open the `app.R` Script**: Go to `File` > `Open File` and navigate to the location of your `app.R` script.
+3. **Run the App**: Click the 'Run App' button in the RStudio interface to start the application.
 
-```bash
-git clone https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing.git
-```
+### Using R Console
 
-### Step 2: Set the Working Directory
+1. **Start the R Console**: Open the R console on your machine.
+2. **Run the App**: Execute the following command in the R console to start the application:
 
-Open RStudio, and set the working directory to the project folder you just downloaded. You can do this by executing the following command in the R console, replacing path_to_folder with the actual path to the project folder:
+    ```r
+    shiny::runApp()
+    ```
 
-```R
-setwd("path_to_folder/Genomics-Metadata-Multiplexing")
-```
+### Using R Terminal
 
-### Step 3: Run the Setup Script
+Alternatively, you can use the terminal to run the application:
 
-In RStudio, open the setup.R file located in the project directory. This script is responsible for configuring the virtual environment and installing necessary dependencies. Run the script by clicking the 'Source' button in the top right corner of the script editor or by executing the following command in the R console:
+1. **Navigate to the App Directory**: Use the `cd` command to navigate to the directory containing your `app.R` script.
+2. **Run the App**: Execute the `app.R` script using RScript:
 
-```R
-source("setup.R")
-```
+    ```r
+    RScript app.R
+    ```
 
-### Step 4: Launch the Application
+If you encounter issues, ensure you have the latest versions of R and RStudio. For permission errors, run RStudio as an administrator or use sudo on Linux/MacOS.
 
-After the setup script completes, open the app.R file in RStudio. Launch the application by clicking the 'Run App' button in the top right corner of the script editor, or by executing the following command in the R console:
+Windows users may need to manually configure environments and dependencies due to package conflicts.
 
-```R
-shiny::runApp()
-```
-
-The application will open in a new browser window, and you're ready to use the "Celseq2 Sample Generator Dashboard" module.
-
-## Troubleshooting
-
-If you encounter any issues during the setup process, please ensure that you have the latest versions of R and RStudio installed.
-For permission-related errors, try running RStudio as an administrator or using sudo on Linux/MacOS.
-
-Windows users may need to manually configure virtual environments and R dependencies due to potential package conflicts.
 Acknowledgements
-
 We extend our gratitude to all contributors to the Genomics Metadata Multiplexing project. For a complete list of contributors, please visit the Contributors wiki page.

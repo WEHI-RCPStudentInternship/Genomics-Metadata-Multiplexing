@@ -23,15 +23,17 @@ setup_python_env <- function(python_path, venv_dir, requirements_path) {
 
 # Function to setup R environment and install R dependencies from renv.lock
 setup_renv <- function() {
+    # Ensure 'renv' is installed and loaded only once
     if (!requireNamespace("renv", quietly = TRUE)) {
         install.packages("renv")
+        library(renv)
+    } else {
+        library(renv)
     }
-    # Initialize the renv environment without prompting the user
-    # renv::init()
-    # Restore the project dependencies from renv.lock without confirmation prompts
-    renv::restore(confirm = FALSE)
     
-    install.packages(c("shiny", "shinyjs", "shinythemes", "DT", "reticulate", "shinycssloaders"))
+    # Restore the project dependencies from renv.lock without redundant operations
+    renv::install()
+    # renv::restore(confirm = FALSE)
 }
 
 # Execute the setup functions

@@ -1,17 +1,10 @@
-library(shiny)
-library(reticulate)
-
 # clear environment dependencies
 rm(list=ls())
 
-# Ensure 'renv' is installed
-if (!requireNamespace("renv", quietly = TRUE)) {
-    install.packages("renv")
-}
+source('setup.R')
 
-# Load 'renv' and restore packages
-renv::load()  
-renv::restore()  
+library(shiny)
+library(reticulate)
 
 # Define and use the virtual environment
 venv_dir <- "./venv"
@@ -23,4 +16,5 @@ source("R/ui.R")
 source("R/server.R")
 
 # Launch the Shiny app
+print("Starting GMM Shiny Application...")
 shinyApp(ui = ui, server = server)

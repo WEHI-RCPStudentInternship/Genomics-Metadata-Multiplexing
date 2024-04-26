@@ -10,7 +10,7 @@ ui <- fluidPage(
                          tags$div(class = "navbar-header", 
                                   tags$div(class = "navbar-brand",
                                             style="display: flex; flex-direction: row; gap: 5px;",
-                                           tags$img(src = "wehi.png", height = "30px"),
+                                           tags$img(src = "https://wehieduau.sharepoint.com/:i:/r/sites/StudentInternGroupatWEHI/Shared%20Documents/General/WEHI%20beamer%20template%20(rough%20proof%20of%20concept)/assests/wehi_logo.png?csf=1&web=1&e=G3w6hD", height = "30px"),
                                             tags$span("Genomics Metadata Multiplexing", style = "vertical-align: middle; margin-left: 10px;") 
                                   )
                          )

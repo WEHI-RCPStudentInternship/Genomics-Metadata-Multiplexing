@@ -33,7 +33,7 @@ setup_renv <- function() {
     
     # Restore the project dependencies from renv.lock without redundant operations
     renv::install()
-    # renv::restore(confirm = FALSE)
+    renv::restore(confirm = FALSE)
 }
 
 # Execute the setup functions

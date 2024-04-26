@@ -455,7 +455,7 @@
     },
     "reticulate": {
       "Package": "reticulate",
-      "Version": "1.36.0",
+      "Version": "1.36.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -473,7 +473,7 @@
         "utils",
         "withr"
       ],
-      "Hash": "ed42084db0ff8dd4b1d997202f774dcf"
+      "Hash": "e037fb5dc364efdaf616eb6bc05aaca2"
     },
     "rlang": {
       "Package": "rlang",
@@ -518,6 +518,13 @@
         "R"
       ],
       "Hash": "4c8415e0ec1e29f3f4f6fc108bef0144"
+    },
+    "rstudioapi": {
+      "Package": "rstudioapi",
+      "Version": "0.16.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "96710351d642b70e8f02ddeb237c46a7"
     },
     "sass": {
       "Package": "sass",

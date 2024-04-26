@@ -10,7 +10,7 @@ thumbnail_image_handler <- function(input, output, session) {
     observeEvent(input$viewOp1, {
         showModal(modalDialog(
             title = "Sample Plate Layout Sheet for Operation 1",
-            tags$img(src = "plate_layout.jpg", style = "width:100%;"),
+            tags$img(src = "https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/blob/main/www/plate_layout.jpg?raw=true", style = "width:100%;"),
             easyClose = TRUE,
             footer = NULL
         ))
@@ -19,7 +19,7 @@ thumbnail_image_handler <- function(input, output, session) {
     observeEvent(input$viewOp3, {
         showModal(modalDialog(
             title = "Sample Template Sheet for Operation 3",
-            tags$img(src = "template_sheet.jpg", style = "width:100%;"),
+            tags$img(src = "https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/blob/main/www/template_sheet.jpg?raw=true", style = "width:100%;"),
             easyClose = TRUE,
             footer = NULL
         ))
@@ -28,7 +28,7 @@ thumbnail_image_handler <- function(input, output, session) {
     observeEvent(input$viewOp4, {
         showModal(modalDialog(
             title = "Sample Primer Index File for Operation 4",
-            tags$img(src = "primer_index.jpg", style = "width:100%;"),
+            tags$img(src = "https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/blob/main/www/primer_index.jpg?raw=true", style = "width:100%;"),
             easyClose = TRUE,
             footer = NULL
         ))

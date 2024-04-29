@@ -193,7 +193,7 @@ def plate_to_samplesheet(xlsx_file):
     return full_samplesheet
 
 def load_excel_samplesheet(template_sheet_filepath):
-    df = pd.read_excel(template_sheet_filepath, skiprows=1, header=None)
+    df = pd.read_excel(template_sheet_filepath, skiprows=1, header=None, engine='openpyxl')
 
     def combine_columns(a, b):
         if pd.isna(a):
@@ -269,7 +269,7 @@ def merge_samples_and_primers(primer_index_file_path, merged_samplesheet_fcs_and
     - DataFrame with merged information including primer and index data.
     """
     # Read primer and index information from Excel
-    primer_index_df = pd.read_excel(primer_index_file_path, sheet_name='Sample primer & index', skiprows=3)
+    primer_index_df = pd.read_excel(primer_index_file_path, sheet_name='Sample primer & index', skiprows=3, engine='openpyxl')
     # Rename 'Sample name' column to 'Sample'
     primer_index_df.rename({'Sample name': 'Sample'}, axis=1, inplace=True)
     
@@ -293,7 +293,7 @@ def merge_samples_and_primers(primer_index_file_path, merged_samplesheet_fcs_and
     - DataFrame with merged information including primer and index data.
     """
     # Read primer and index information from Excel
-    primer_index_df = pd.read_excel(primer_index_file_path, sheet_name='Sample primer & index', skiprows=3)
+    primer_index_df = pd.read_excel(primer_index_file_path, sheet_name='Sample primer & index', skiprows=3, engine='openpyxl')
     # Rename 'Sample name' column to 'Sample'
     primer_index_df.rename({'Sample name': 'Sample'}, axis=1, inplace=True)
     

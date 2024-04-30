@@ -11,7 +11,13 @@ This markdown file contains the following contents:
 4. [Acknowledgements](#acknowledgements)
 
 ## Directory Structure
-
+- [`server.R`](./server.R): The entry point to this application
+- [`setup.R`](./setup.R): Used for initialisating this application
+- [`ui.R`](./ui.R): Provides the frontend interface
+- [`R`](./R): A sub-directory that contains R components
+- [`scripts`](./scripts/): Python files that handle merge logic (developed by WEHI Senior Research Officer, [Marek Cmero](https://github.com/WEHIGenomicsRnD/celseq-sample-sheet-generator))
+- [`data.zip`](./data.zip): Contains the sample data to demo the application
+- [`markdown_assets`](./markdown_assets/): Stores images used for markdown files and the [GMM wiki]()
 
 ## Running This Application
 

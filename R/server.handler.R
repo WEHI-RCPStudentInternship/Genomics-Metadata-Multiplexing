@@ -110,22 +110,53 @@ data_upload_handler <- function(input, output, session) {
     return(uploadedFilePaths)
 }
 
-
-
-
-
 data_processing_handler <- function(input, output, session, uploadedFilePaths) {
     processedData <- reactiveVal(NULL)  # To store the result of processing
     
     # Listen for the 'process' button click
     observeEvent(input$process, {
-        # Ensure all required files are uploaded
-        req(uploadedFilePaths$plate_layout, uploadedFilePaths$fcs_files, uploadedFilePaths$template_sheet)
-        
         cat("Process button clicked, starting data processing...\n")
         
         # Show processing hint
         shinyjs::show("spinner")
+
+        # Track which type of files are missing
+        errorCount <- 0
+
+        # Check if there are any FCS files uploaded
+        if (length(uploadedFilePaths$fcs_files) == 0) {
+            errorCount <- errorCount + 1
+        }
+        # Check if the template sheet was uploaded
+        if (uploadedFilePaths$template_sheet$path == "") {
+            errorCount <- errorCount + 10
+        }
+        # Check if the plate layout sheet was uploaded
+        if (uploadedFilePaths$plate_layout$path == "") {
+            errorCount <- errorCount + 100
+        }
+        # If error exists, handle it accordingly
+        if (errorCount != 0) {
+            errorMessage <- "All required files (i.e. FCS, plate_layout, template) are missing!"
+            if (errorCount == 1) {
+                errorMessage <- "No FCS files detected!"
+            } else if (errorCount == 10) {
+                errorMessage <- "No template sheet files detected!"
+            } else if (errorCount == 100) {
+                errorMessage <- "No plate layout sheet detected!"
+            } else if (errorCount == 11) {
+                errorMessage <- "No FCS files and template sheet detected!"
+            } else if (errorCount == 101) {
+                errorMessage <- "No FCS files and plate layout sheet detected!"
+            } else if (errorCount == 110) {
+                errorMessage <- "No plate layout and template sheet detected!"
+            }
+            # Show the error
+            shinyjs::hide("spinner")
+            print(paste(errorMessage))
+            shinyalert::shinyalert("Error", errorMessage, type = "error")
+            return(processedData)
+        }
         
         # Assuming uploadedFilePaths$fcs_files is a list of file paths
         # Join multiple FCS file paths into a single string if necessary
@@ -133,40 +164,28 @@ data_processing_handler <- function(input, output, session, uploadedFilePaths) {
         outputFilePath <- tempfile(fileext = ".csv", tmpdir = "temp/data")
         # Construct the command to call the external Python script with the updated file paths
         command <- sprintf("python scripts/fcs_converter.py --plate-layout %s --fcs-files %s --template-sheet %s --primer-index %s --output-file %s",
-                           shQuote(uploadedFilePaths$plate_layout), 
+                           shQuote(uploadedFilePaths$plate_layout$path), 
                            shQuote(fcs_files_argument), 
-                           shQuote(uploadedFilePaths$template_sheet), 
-                           shQuote(uploadedFilePaths$primer_index), 
+                           shQuote(uploadedFilePaths$template_sheet$path), 
+                           shQuote(uploadedFilePaths$primer_index$path), 
                            shQuote(outputFilePath))
         
         # Execute the command and capture output
         command_output <- system(command, intern = TRUE, ignore.stderr = FALSE, wait = TRUE)
         print(command_output)
+
+        # Hide processing hint
+        shinyjs::hide("spinner")
         
         # Now, check if the processed data file was successfully created by the command
-        if (file.exists(outputFilePath)) {
-            processedData(read.csv(outputFilePath, stringsAsFactors = FALSE))
-            # Hide processing hint
-            shinyjs::hide("spinner")
-            # Display completion popup
-            shinyalert::shinyalert("Success", "Data processing completed successfully!", type = "success")
-        } else {
-            # If the file doesn't exist, log an error message
-            print(paste("Something Wrong with the application, please try again."))
-            # Hide processing hint
-            shinyjs::hide("spinner")
-            # Display error popup
-            shinyalert::shinyalert("Error", "Something went wrong with the data processing.", type = "error")
-        }
+        processedData(read.csv(outputFilePath, stringsAsFactors = FALSE))
+
+        # Display completion popup
+        shinyalert::shinyalert("Success", "Data processing completed successfully!", type = "success")
+
     })
-    
     return(processedData)
 }
-
-
-
-
-
 
 # Data display handler function
 data_display_handler <- function(input, output, session, processedData) {

@@ -17,7 +17,7 @@ This markdown file contains the following contents:
 - [`R`](./R): A sub-directory that contains R components
 - [`scripts`](./scripts/): Python files that handle merge logic (developed by WEHI Senior Research Officer, [Marek Cmero](https://github.com/WEHIGenomicsRnD/celseq-sample-sheet-generator))
 - [`data.zip`](./data.zip): Contains the sample data to demo the application
-- [`markdown_assets`](./markdown_assets/): Stores images used for markdown files and the [GMM wiki]()
+- [`markdown_assets`](./markdown_assets/): Stores images used for markdown files and the [GMM wiki](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki)
 
 ## Running This Application
 

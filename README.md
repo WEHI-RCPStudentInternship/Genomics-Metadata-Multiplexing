@@ -2,6 +2,8 @@
 
 Welcome to the GMM repository.
 
+> **SPECIAL ATTRIBUTION**: We would like to thank WEHI Senior Research Officer [Marek Cmero](https://www.linkedin.com/in/marek-cmero/?originalSubdomain=au) for developing the FACS merge logic used for this project. The code can be found under the `scripts` directory in [`operations.py`](./scripts/operations.py), which was derived from his [`celseq-sample-sheet-generator`](https://github.com/WEHIGenomicsRnD/celseq-sample-sheet-generator) repository.
+
 This codebase contains all assets that will be deployed onto WEHI's Milton HPC via R Shiny. For details on the goals and implementation of this project visit the [GMM wiki page](https://github.com/WEHI-ResearchComputing/Genomics-Metadata-Multiplexing/wiki).
 
 This markdown file contains the following contents:
